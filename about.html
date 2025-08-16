@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>About — Wellround</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="icon" type="image/x-icon" href="./assets/images/favicon.ico">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
+  <style>
+    * { font-family: 'Plus Jakarta Sans', system-ui, -apple-system, Segoe UI, Roboto, Inter, Helvetica, Arial, sans-serif; }
+    .neo { box-shadow: 6px 10px 24px rgba(0,30,60,.15), -6px -10px 24px rgba(255,255,255,.4); }
+    .glass { backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); background: linear-gradient(180deg, rgba(255,255,255,.9), rgba(255,255,255,.6)); border: 1px solid rgba(255,255,255,.7); }
+    .ring-grad { background: conic-gradient(from 90deg, #3b82f6 0 85%, rgba(59,130,246,.15) 85% 100%); }
+    
+    /* 3D Effects */
+    .perspective-1000 { perspective: 1000px; }
+    .transform-gpu { transform: translate3d(0, 0, 0); }
+    .rotate-y-12 { transform: rotateY(12deg) rotateX(6deg) scale(1.1); }
+    .rotate-x-6 { transform: rotateX(6deg); }
+    .rotate-x-50 { transform: rotateX(50deg); }
+    .rotate-z-45 { transform: rotateZ(45deg); }
+    
+    /* Combined rotation for beautiful 3D effect */
+    .rotate-x-50.rotate-z-45 { 
+      transform: rotateX(15deg) rotateZ(8deg) rotateY(-5deg); 
+    }
+    
+    .rotate-x-50.rotate-z-45:hover { 
+      transform: rotateX(20deg) rotateZ(12deg) rotateY(-10deg) scale(1.1); 
+    }
+  </style>
+</head>
+<body class="bg-gradient-to-br from-sky-50 via-indigo-50 to-white text-gray-800 overflow-x-hidden">
+  <!-- Soft gradient blobs (lighter background) -->
+  <div class="pointer-events-none fixed inset-0 -z-10">
+    <div class="absolute -top-24 -left-24 h-96 w-96 rounded-full blur-3xl opacity-50" style="background: radial-gradient(60% 60% at 50% 50%, #93c5fd 0%, rgba(147,197,253,0) 70%), radial-gradient(40% 40% at 30% 30%, #60a5fa 0%, rgba(96,165,250,0) 80%);"></div>
+    <div class="absolute top-32 -right-20 h-[28rem] w-[28rem] rounded-full blur-[90px] opacity-40" style="background: radial-gradient(60% 60% at 50% 50%, #c4b5fd 0%, rgba(196,181,253,0) 70%), radial-gradient(50% 50% at 70% 30%, #38bdf8 0%, rgba(56,189,248,0) 80%);"></div>
+    <div class="absolute bottom-0 left-1/2 -translate-x-1/2 h-80 w-[36rem] rounded-[40%] rotate-6 blur-[80px] opacity-40" style="background: radial-gradient(60% 60% at 50% 50%, #fde68a 0%, rgba(253,230,138,0) 70%), radial-gradient(50% 50% at 30% 70%, #93c5fd 0%, rgba(147,197,253,0) 80%);"></div>
+  </div>
+
+  <!-- NAVBAR -->
+  <header class="max-w-7xl mx-auto px-6 pt-6">
+    <nav class="flex items-center justify-between p-3 rounded-2xl glass text-gray-900">
+      <div class="flex items-center gap-3">
+        <img src="./assets/images/logo.png" width="50">
+        <span class="font-extrabold text-lg tracking-tight">Wellround</span>
+      </div>
+      <div class="hidden md:flex items-center gap-6 text-sm">
+        <a class="hover:opacity-80" href="./index.html">Home</a>
+        <a class="hover:opacity-80 font-semibold text-blue-600" href="./about.html">About</a>
+        <a class="hover:opacity-80" href="./team.html">Team</a>
+        <a class="hover:opacity-80" href="./contact.html">Contact</a>
+      </div>
+      <div class="flex items-center gap-3">
+        <a href="https://forms.zohopublic.in/adminwell1/form/JointheWellroundBetaatMBZUAI/formperma/m2n8ERITdzq9XYBROaiO9evQRCnMh5Qx9WMT8Mz8Mbk" class="px-4 py-2 rounded-xl bg-gradient-to-tr from-blue-500 to-indigo-500 text-white shadow-[0_6px_20px_rgba(59,130,246,.45)]">Get the app</a>
+      </div>
+    </nav>
+  </header>
+
+  <!-- HERO -->
+  <section class="max-w-7xl mx-auto px-6 pt-14 pb-20">
+    <div class="text-center">
+      <h1 class="text-4xl md:text-6xl font-extrabold leading-tight text-gray-900">About <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-500 via-sky-400 to-indigo-500">Wellround</span></h1>
+      <p class="mt-6 text-xl text-gray-600 max-w-4xl mx-auto">An all-in-one, AI-driven health solution that transforms the chaos of personal data into personalized, holistic health insights to empower you to achieve your full potential.</p>
+    </div>
+  </section>
+
+  <!-- THE PROBLEM WE'RE SOLVING -->
+  <section class="max-w-7xl mx-auto px-6 pb-20">
+    <div class="text-center p-8 md:p-12 rounded-3xl bg-gradient-to-br from-red-50 via-orange-50 to-yellow-50 relative overflow-hidden">
+      <!-- Background decoration -->
+      <div class="absolute -top-10 -right-10 h-40 w-40 rounded-full bg-orange-200/30 blur-2xl"></div>
+      <div class="absolute -bottom-10 -left-10 h-32 w-32 rounded-full bg-red-200/20 blur-xl"></div>
+      
+      <div class="relative max-w-4xl mx-auto">
+        <div class="text-4xl mb-4">⚡</div>
+        <h2 class="text-3xl md:text-4xl font-extrabold text-gray-900 mb-6">The Problem We're Solving</h2>
+        <p class="text-lg text-gray-700 mb-6">In today's fast-paced environment, people often neglect their well-being due to a lack of time, awareness, or personalized support.</p>
+        
+        <div class="grid md:grid-cols-3 gap-6 mt-8">
+          <div class="p-6 rounded-2xl bg-white/80 glass">
+            <div class="text-3xl mb-3">📊</div>
+            <h3 class="font-bold text-gray-900 mb-2">Fragmented Tools</h3>
+            <p class="text-gray-600 text-sm">Multiple disjointed apps for fitness, productivity, and mental health create chaos instead of clarity</p>
+          </div>
+          <div class="p-6 rounded-2xl bg-white/80 glass">
+            <div class="text-3xl mb-3">🎯</div>
+            <h3 class="font-bold text-gray-900 mb-2">Generic Solutions</h3>
+            <p class="text-gray-600 text-sm">One-size-fits-all advice that ignores your unique lifestyle, schedule, and personal needs</p>
+          </div>
+          <div class="p-6 rounded-2xl bg-white/80 glass">
+            <div class="text-3xl mb-3">⏰</div>
+            <h3 class="font-bold text-gray-900 mb-2">Overwhelming Complexity</h3>
+            <p class="text-gray-600 text-sm">Busy lives leave no time for complex wellness routines or understanding scattered health data</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- OUR SOLUTION -->
+  <section class="max-w-7xl mx-auto px-6 pb-20">
+    <div class="grid md:grid-cols-2 gap-12 items-center">
+      <div>
+        <h2 class="text-3xl md:text-4xl font-extrabold text-gray-900 mb-6">Our Solution</h2>
+        <div class="space-y-4 text-gray-600">
+          <p class="text-lg font-medium text-gray-800">Wellround integrates data from well-being's 7 dimensions: mental, physical, social, financial, spiritual, vocational, and environmental health.</p>
+          
+          <p>Starting with mental and physical health, our AI analyzes real-time data from your smartwatch and digital calendar to create a holistic profile of your unique lifestyle and needs.</p>
+          
+          <p>We don't just track—we transform chaos into clarity. Our platform provides tailored recommendations for daily routines that are practical, data-driven, and achievable within your busy schedule.</p>
+          
+          <p>By understanding the interconnection between physical and mental health based on your external factors, Wellround provides insights that are not only smart but profoundly personalized.</p>
+        </div>
+        
+      </div>
+      
+      <!-- Solution Visual Cards -->
+      <div class="grid md:grid-cols-2 gap-6">
+        <!-- 7-Dimensional Integration -->
+        <div class="relative group">
+          <div class="absolute -inset-4 bg-gradient-to-tr from-blue-500/20 via-cyan-400/10 to-indigo-500/20 blur-xl rounded-[2rem] opacity-0 group-hover:opacity-100 transition-opacity"></div>
+          <div class="relative p-6 rounded-2xl glass text-center transform-gpu transition-transform duration-700 hover:scale-105 hover:rotate-x-3 hover:rotate-y-2" style="transform-style: preserve-3d;">
+            <div class="text-4xl mb-3">🌐</div>
+            <h3 class="text-lg font-bold text-gray-900 mb-2">7-Dimensional Health</h3>
+            <p class="text-gray-600 text-sm">Holistic integration of all wellness aspects</p>
+          </div>
+        </div>
+
+        <!-- AI Analysis -->
+        <div class="relative group">
+          <div class="absolute -inset-4 bg-gradient-to-tr from-emerald-500/20 via-green-400/10 to-blue-500/20 blur-xl rounded-[2rem] opacity-0 group-hover:opacity-100 transition-opacity"></div>
+          <div class="relative p-6 rounded-2xl glass text-center transform-gpu transition-transform duration-700 hover:scale-105 hover:rotate-x-3 hover:rotate-y-2" style="transform-style: preserve-3d;">
+            <div class="text-4xl mb-3">🧠</div>
+            <h3 class="text-lg font-bold text-gray-900 mb-2">Smart AI Analysis</h3>
+            <p class="text-gray-600 text-sm">Physiological signals & activity patterns</p>
+          </div>
+        </div>
+
+        <!-- Proactive Insights -->
+        <div class="relative group">
+          <div class="absolute -inset-4 bg-gradient-to-tr from-purple-500/20 via-pink-400/10 to-indigo-500/20 blur-xl rounded-[2rem] opacity-0 group-hover:opacity-100 transition-opacity"></div>
+          <div class="relative p-6 rounded-2xl glass text-center transform-gpu transition-transform duration-700 hover:scale-105 hover:rotate-x-3 hover:rotate-y-2" style="transform-style: preserve-3d;">
+            <div class="text-4xl mb-3">🔮</div>
+            <h3 class="text-lg font-bold text-gray-900 mb-2">Proactive Suggestions</h3>
+            <p class="text-gray-600 text-sm">Workload & pattern-based recommendations</p>
+          </div>
+        </div>
+
+        <!-- Gamified Experience -->
+        <div class="relative group">
+          <div class="absolute -inset-4 bg-gradient-to-tr from-amber-500/20 via-orange-400/10 to-red-500/20 blur-xl rounded-[2rem] opacity-0 group-hover:opacity-100 transition-opacity"></div>
+          <div class="relative p-6 rounded-2xl glass text-center transform-gpu transition-transform duration-700 hover:scale-105 hover:rotate-x-3 hover:rotate-y-2" style="transform-style: preserve-3d;">
+            <div class="text-4xl mb-3">🎮</div>
+            <h3 class="text-lg font-bold text-gray-900 mb-2">Gamified Wellness</h3>
+            <p class="text-gray-600 text-sm">Rewarding achievement & habit building</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- OUR MISSION -->
+  <section class="max-w-7xl mx-auto px-6 pb-20">
+    <div class="text-center p-12 rounded-3xl bg-gradient-to-br from-indigo-500 via-purple-500 to-blue-600 text-white relative overflow-hidden">
+      <!-- Background decoration -->
+      <div class="absolute -top-10 -right-10 h-40 w-40 rounded-full bg-white/10 blur-2xl"></div>
+      <div class="absolute -bottom-10 -left-10 h-32 w-32 rounded-full bg-white/10 blur-xl"></div>
+      
+      <div class="relative max-w-4xl mx-auto">
+        <h2 class="text-3xl md:text-5xl font-extrabold mb-6">Our Mission</h2>
+        <p class="text-xl text-indigo-100 mb-8">To transform the chaos of personal health data into personalized, holistic insights that empower everyone to achieve their full potential and thrive in our fast-paced world.</p>
+        
+        <div class="grid md:grid-cols-3 gap-8 mt-12">
+          <div class="text-center">
+            <div class="text-4xl mb-3">🔗</div>
+            <h3 class="font-bold text-lg mb-2">Holistic Integration</h3>
+            <p class="text-indigo-100 text-sm">Connecting all 7 dimensions of well-being into one seamless, intelligent platform</p>
+          </div>
+          <div class="text-center">
+            <div class="text-4xl mb-3">✨</div>
+            <h3 class="font-bold text-lg mb-2">Personalized Insights</h3>
+            <p class="text-indigo-100 text-sm">AI-driven recommendations that adapt to your unique lifestyle, schedule, and goals</p>
+          </div>
+          <div class="text-center">
+            <div class="text-4xl mb-3">💪</div>
+            <h3 class="font-bold text-lg mb-2">Empowered Living</h3>
+            <p class="text-indigo-100 text-sm">Turning well-being pursuit into a rewarding, gamified journey of self-improvement</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- OUR VALUES -->
+  <section class="max-w-7xl mx-auto px-6 pb-20">
+    <div class="text-center mb-12">
+      <h2 class="text-3xl md:text-4xl font-extrabold text-gray-900">Our Core Values</h2>
+      <p class="mt-4 text-gray-600 max-w-2xl mx-auto">The principles that guide everything we build and every decision we make in transforming health and wellness</p>
+    </div>
+    
+    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <!-- Holistic Thinking -->
+      <div class="relative group">
+        <div class="absolute -inset-4 bg-gradient-to-tr from-blue-500/20 via-cyan-400/10 to-indigo-500/20 blur-xl rounded-[2rem] opacity-0 group-hover:opacity-100 transition-opacity"></div>
+        <div class="relative p-6 rounded-2xl bg-white/70 neo text-center transform-gpu transition-transform duration-700 hover:scale-105">
+          <div class="text-3xl mb-4">🧩</div>
+          <h3 class="font-bold text-gray-900 mb-2">Holistic Thinking</h3>
+          <p class="text-gray-600 text-sm">Understanding that all dimensions of well-being are interconnected and equally important</p>
+        </div>
+      </div>
+
+      <!-- Personalization -->
+      <div class="relative group">
+        <div class="absolute -inset-4 bg-gradient-to-tr from-emerald-500/20 via-green-400/10 to-blue-500/20 blur-xl rounded-[2rem] opacity-0 group-hover:opacity-100 transition-opacity"></div>
+        <div class="relative p-6 rounded-2xl bg-white/70 neo text-center transform-gpu transition-transform duration-700 hover:scale-105">
+          <div class="text-3xl mb-4">🎨</div>
+          <h3 class="font-bold text-gray-900 mb-2">Deep Personalization</h3>
+          <p class="text-gray-600 text-sm">Every individual is unique—our AI adapts to your specific lifestyle, needs, and goals</p>
+        </div>
+      </div>
+
+      <!-- Empowerment -->
+      <div class="relative group">
+        <div class="absolute -inset-4 bg-gradient-to-tr from-purple-500/20 via-pink-400/10 to-indigo-500/20 blur-xl rounded-[2rem] opacity-0 group-hover:opacity-100 transition-opacity"></div>
+        <div class="relative p-6 rounded-2xl bg-white/70 neo text-center transform-gpu transition-transform duration-700 hover:scale-105">
+          <div class="text-3xl mb-4">⚡</div>
+          <h3 class="font-bold text-gray-900 mb-2">Empowerment</h3>
+          <p class="text-gray-600 text-sm">Giving you the tools and insights to take control of your health journey with confidence</p>
+        </div>
+      </div>
+
+      <!-- Simplicity in Complexity -->
+      <div class="relative group">
+        <div class="absolute -inset-4 bg-gradient-to-tr from-amber-500/20 via-orange-400/10 to-red-500/20 blur-xl rounded-[2rem] opacity-0 group-hover:opacity-100 transition-opacity"></div>
+        <div class="relative p-6 rounded-2xl bg-white/70 neo text-center transform-gpu transition-transform duration-700 hover:scale-105">
+          <div class="text-3xl mb-4">✨</div>
+          <h3 class="font-bold text-gray-900 mb-2">Elegant Simplicity</h3>
+          <p class="text-gray-600 text-sm">Making complex health data beautiful, understandable, and actionable for busy lives</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Additional Values Row -->
+    <div class="grid md:grid-cols-3 gap-6 mt-6 max-w-4xl mx-auto">
+      <!-- Privacy & Trust -->
+      <div class="relative group">
+        <div class="absolute -inset-4 bg-gradient-to-tr from-indigo-500/20 via-purple-400/10 to-blue-500/20 blur-xl rounded-[2rem] opacity-0 group-hover:opacity-100 transition-opacity"></div>
+        <div class="relative p-6 rounded-2xl bg-white/70 neo text-center transform-gpu transition-transform duration-700 hover:scale-105">
+          <div class="text-3xl mb-4">🛡️</div>
+          <h3 class="font-bold text-gray-900 mb-2">Privacy & Trust</h3>
+          <p class="text-gray-600 text-sm">Your health data stays yours—local-first processing with encrypted sync across devices</p>
+        </div>
+      </div>
+
+      <!-- Continuous Innovation -->
+      <div class="relative group">
+        <div class="absolute -inset-4 bg-gradient-to-tr from-teal-500/20 via-cyan-400/10 to-green-500/20 blur-xl rounded-[2rem] opacity-0 group-hover:opacity-100 transition-opacity"></div>
+        <div class="relative p-6 rounded-2xl bg-white/70 neo text-center transform-gpu transition-transform duration-700 hover:scale-105">
+          <div class="text-3xl mb-4">💡</div>
+          <h3 class="font-bold text-gray-900 mb-2">Innovation</h3>
+          <p class="text-gray-600 text-sm">Pushing boundaries with AI and design to create genuinely helpful wellness experiences</p>
+        </div>
+      </div>
+
+      <!-- Joyful Wellness -->
+      <div class="relative group">
+        <div class="absolute -inset-4 bg-gradient-to-tr from-rose-500/20 via-pink-400/10 to-purple-500/20 blur-xl rounded-[2rem] opacity-0 group-hover:opacity-100 transition-opacity"></div>
+        <div class="relative p-6 rounded-2xl bg-white/70 neo text-center transform-gpu transition-transform duration-700 hover:scale-105">
+          <div class="text-3xl mb-4">🌈</div>
+          <h3 class="font-bold text-gray-900 mb-2">Joyful Experience</h3>
+          <p class="text-gray-600 text-sm">Transforming wellness pursuit into a rewarding, gamified journey that brings daily joy</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY WELLROUND IS DIFFERENT -->
+  <section class="max-w-7xl mx-auto px-6 pb-20">
+    <div class="text-center mb-12">
+      <h2 class="text-3xl md:text-4xl font-extrabold text-gray-900">Why Wellround is Different</h2>
+      <p class="mt-4 text-gray-600 max-w-2xl mx-auto">We're not just another wellness app—we're revolutionizing how technology supports human flourishing</p>
+    </div>
+    
+    <div class="grid md:grid-cols-3 gap-8">
+      <div class="p-8 rounded-2xl glass text-center">
+        <div class="text-4xl mb-4">🌐</div>
+        <h3 class="text-xl font-bold text-gray-900 mb-4">7-Dimensional Wellness</h3>
+        <p class="text-gray-600">Beyond just fitness tracking—we integrate mental, physical, social, financial, spiritual, vocational, and environmental health into one unified platform.</p>
+      </div>
+
+      <div class="p-8 rounded-2xl glass text-center">
+        <div class="text-4xl mb-4">🤖</div>
+        <h3 class="text-xl font-bold text-gray-900 mb-4">True AI Intelligence</h3>
+        <p class="text-gray-600">Our AI doesn't just analyze patterns—it understands the interconnections between your physical and mental health, providing deeply personalized coaching.</p>
+      </div>
+
+      <div class="p-8 rounded-2xl glass text-center">
+        <div class="text-4xl mb-4">🎮</div>
+        <h3 class="text-xl font-bold text-gray-900 mb-4">Gamified Wellness Journey</h3>
+        <p class="text-gray-600">Transform your health goals into an engaging, rewarding adventure with achievements, challenges, and progress celebrations that keep you motivated.</p>
+      </div>
+    </div>
+
+    <!-- Additional Differentiators -->
+    <div class="grid md:grid-cols-2 gap-8 mt-12 max-w-5xl mx-auto">
+      <div class="flex gap-4 p-6 rounded-2xl bg-white/60 glass">
+        <div class="text-3xl flex-shrink-0">📱</div>
+        <div>
+          <h4 class="font-bold text-gray-900 mb-2">Smart Data Integration</h4>
+          <p class="text-gray-600 text-sm">Seamlessly connects smartwatch data, calendar inputs, and personal preferences to create your comprehensive health profile—no manual tracking required.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4 p-6 rounded-2xl bg-white/60 glass">
+        <div class="text-3xl flex-shrink-0">🔮</div>
+        <div>
+          <h4 class="font-bold text-gray-900 mb-2">Predictive Wellness</h4>
+          <p class="text-gray-600 text-sm">Proactive recommendations based on your patterns, workload, and external factors—preventing burnout before it happens.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4 p-6 rounded-2xl bg-white/60 glass">
+        <div class="text-3xl flex-shrink-0">🎯</div>
+        <div>
+          <h4 class="font-bold text-gray-900 mb-2">Practical Implementation</h4>
+          <p class="text-gray-600 text-sm">Recommendations that fit your real life—considering your schedule, energy levels, and personal constraints for achievable success.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4 p-6 rounded-2xl bg-white/60 glass">
+        <div class="text-3xl flex-shrink-0">🌱</div>
+        <div>
+          <h4 class="font-bold text-gray-900 mb-2">Adaptive Learning</h4>
+          <p class="text-gray-600 text-sm">Continuously evolving with you—our AI learns from your responses and adjusts recommendations as your life and priorities change.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- JOIN OUR JOURNEY -->
+  <section class="max-w-4xl mx-auto px-6 pb-20">
+    <div class="p-8 md:p-12 rounded-3xl glass text-center">
+      <h2 class="text-3xl md:text-4xl font-extrabold text-gray-900 mb-4">Join Our Journey</h2>
+      <p class="text-gray-600 mb-8 max-w-2xl mx-auto">We're just getting started. Be part of the movement to make wellness tracking beautiful, insightful, and genuinely life-changing.</p>
+      
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href="https://forms.zohopublic.in/adminwell1/form/JointheWellroundBetaatMBZUAI/formperma/m2n8ERITdzq9XYBROaiO9evQRCnMh5Qx9WMT8Mz8Mbk" class="px-8 py-3 rounded-xl bg-gradient-to-tr from-blue-500 to-indigo-500 text-white font-semibold shadow-[0_6px_20px_rgba(59,130,246,.45)] hover:shadow-[0_8px_25px_rgba(59,130,246,.5)] transition-shadow">
+          Get the App
+        </a>
+        <a href="./team.html" class="px-8 py-3 rounded-xl bg-white/60 hover:bg-white/80 text-gray-900 font-semibold transition-colors border-2 border-gray-300 hover:border-indigo-400 hover:shadow-md">
+          Meet Our Team
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="max-w-7xl mx-auto px-6 pb-10 text-gray-600 text-sm flex items-center justify-between">
+    <p>© Wellround LLC 2025</p>
+    <div class="flex gap-6">
+      <a href="privacy_policy.html">Privacy</a>
+      <a href="terms_of_service.html">Terms</a>
+      <a href="contact.html">Contact</a>
+    </div>
+  </footer>
+</body>
+</html>
