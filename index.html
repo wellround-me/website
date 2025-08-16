@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Wellround — Your daily harmony</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="icon" type="image/x-icon" href="./assets/images/favicon.ico">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
@@ -13,6 +14,23 @@
     .neo { box-shadow: 6px 10px 24px rgba(0,30,60,.15), -6px -10px 24px rgba(255,255,255,.4); }
     .glass { backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); background: linear-gradient(180deg, rgba(255,255,255,.9), rgba(255,255,255,.6)); border: 1px solid rgba(255,255,255,.7); }
     .ring-grad { background: conic-gradient(from 90deg, #3b82f6 0 85%, rgba(59,130,246,.15) 85% 100%); }
+    
+    /* 3D Effects */
+    .perspective-1000 { perspective: 1000px; }
+    .transform-gpu { transform: translate3d(0, 0, 0); }
+    .rotate-y-12 { transform: rotateY(12deg) rotateX(6deg) scale(1.1); }
+    .rotate-x-6 { transform: rotateX(6deg); }
+    .rotate-x-50 { transform: rotateX(50deg); }
+    .rotate-z-45 { transform: rotateZ(45deg); }
+    
+    /* Combined rotation for beautiful 3D effect */
+    .rotate-x-50.rotate-z-45 { 
+      transform: rotateX(15deg) rotateZ(8deg) rotateY(-5deg); 
+    }
+    
+    .rotate-x-50.rotate-z-45:hover { 
+      transform: rotateX(20deg) rotateZ(12deg) rotateY(-10deg) scale(1.1); 
+    }
   </style>
 </head>
 <body class="bg-gradient-to-br from-sky-50 via-indigo-50 to-white text-gray-800 overflow-x-hidden">
@@ -27,28 +45,22 @@
   <header class="max-w-7xl mx-auto px-6 pt-6">
     <nav class="flex items-center justify-between p-3 rounded-2xl glass text-gray-900">
       <div class="flex items-center gap-3">
-        <svg width="32" height="32" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <defs>
-            <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
-              <stop offset="0%" stop-color="#60a5fa"/>
-              <stop offset="100%" stop-color="#3b82f6"/>
-            </linearGradient>
-          </defs>
-          <path d="M32 10c8 6 12 14 12 22 0 10-6 16-12 22-6-6-12-12-12-22 0-8 4-16 12-22Z" fill="url(#g)"/>
-          <path d="M16 28c6 2 10 6 12 12-9 2-16-2-20-10 3-1 6-2 8-2Z" fill="url(#g)" opacity=".9"/>
-          <path d="M48 28c-6 2-10 6-12 12 9 2 16-2 20-10-3-1-6-2-8-2Z" fill="url(#g)" opacity=".9"/>
-        </svg>
+        <img src="./assets/images/logo.png" width="50">
         <span class="font-extrabold text-lg tracking-tight">Wellround</span>
       </div>
       <div class="hidden md:flex items-center gap-6 text-sm">
-        <a class="hover:opacity-80" href="#features">Features</a>
+        <!-- <a class="hover:opacity-80" href="#features">Features</a>
         <a class="hover:opacity-80" href="#insights">Insights</a>
         <a class="hover:opacity-80" href="#pricing">Pricing</a>
-        <a class="hover:opacity-80" href="#faq">FAQ</a>
+        <a class="hover:opacity-80" href="#faq">FAQ</a> -->
+        <a class="hover:opacity-80" href="./index.html">Home</a> 
+        <a class="hover:opacity-80" href="./team.html">Team</a>
+        <a class="hover:opacity-80" href="./contact.html">Contact</a>
       </div>
       <div class="flex items-center gap-3">
-        <button class="hidden md:inline-flex px-4 py-2 rounded-xl bg-white/40 hover:bg-white/60">Log in</button>
-        <button class="px-4 py-2 rounded-xl bg-gradient-to-tr from-blue-500 to-indigo-500 text-white shadow-[0_6px_20px_rgba(59,130,246,.45)]">Get the app</button>
+        <!-- <button class="hidden md:inline-flex px-4 py-2 rounded-xl bg-white/40 hover:bg-white/60">Log in</button> -->
+         <!-- <button class="px-4 py-2 rounded-xl bg-gradient-to-tr from-blue-500 to-indigo-500 text-white shadow-[0_6px_20px_rgba(59,130,246,.45)]">Get the app</button> -->
+        <a href="https://forms.zohopublic.in/adminwell1/form/JointheWellroundBetaatMBZUAI/formperma/m2n8ERITdzq9XYBROaiO9evQRCnMh5Qx9WMT8Mz8Mbk" class="px-4 py-2 rounded-xl bg-gradient-to-tr from-blue-500 to-indigo-500 text-white shadow-[0_6px_20px_rgba(59,130,246,.45)]">Get the app</a>
       </div>
     </nav>
   </header>
@@ -60,52 +72,41 @@
         <h1 class="text-4xl md:text-6xl font-extrabold leading-tight text-gray-900">Daily harmony,<br><span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-500 via-sky-400 to-indigo-500">guided by insight</span></h1>
         <p class="mt-5 text-gray-600 max-w-xl">Track sleep, activity and mind. Receive actionable micro‑insights. Designed with calming neon‑neumorphic UI to keep focus and joy.</p>
         <div class="mt-8 flex gap-4">
-          <button class="px-5 py-3 rounded-2xl bg-gradient-to-tr from-blue-500 to-indigo-500 text-white neo">Download</button>
-          <button class="px-5 py-3 rounded-2xl bg-white/50 hover:bg-white/70 text-gray-800">Watch demo</button>
+        <a href="https://forms.zohopublic.in/adminwell1/form/JointheWellroundBetaatMBZUAI/formperma/m2n8ERITdzq9XYBROaiO9evQRCnMh5Qx9WMT8Mz8Mbk" class="px-5 py-3 rounded-2xl bg-gradient-to-tr from-blue-500 to-indigo-500 text-white neo">Get the app</a>
+          <!-- <button class="px-5 py-3 rounded-2xl bg-white/50 hover:bg-white/70 text-gray-800">Watch demo</button> -->
         </div>
         <!-- small KPI rings -->
         <div class="mt-10 grid grid-cols-3 gap-4 max-w-sm">
-          <div class="p-4 rounded-2xl bg-white/60 neo text-center">
-            <div class="mx-auto h-20 w-20 rounded-full ring-grad relative">
-              <div class="absolute inset-2 rounded-full bg-white"></div>
-            </div>
-            <p class="mt-2 text-sm text-gray-800">Sleep 85%</p>
-          </div>
-          <div class="p-4 rounded-2xl bg-white/60 neo text-center">
-            <div class="mx-auto h-20 w-20 rounded-full ring-grad relative">
-              <div class="absolute inset-2 rounded-full bg-white"></div>
-            </div>
-            <p class="mt-2 text-sm text-gray-800">Activity 82%</p>
-          </div>
-          <div class="p-4 rounded-2xl bg-white/60 neo text-center">
-            <div class="mx-auto h-20 w-20 rounded-full ring-grad relative">
-              <div class="absolute inset-2 rounded-full bg-white"></div>
-            </div>
-            <p class="mt-2 text-sm text-gray-800">Heart 88%</p>
-          </div>
+        
         </div>
       </div>
-      <!-- App preview card -->
-      <div class="relative">
-        <div class="absolute -inset-6 bg-gradient-to-tr from-blue-500/30 via-cyan-400/20 to-indigo-500/30 blur-2xl rounded-[2.5rem]"></div>
-        <div class="relative mx-auto max-w-sm rounded-[2rem] p-4 glass text-gray-800">
-          <div class="rounded-[1.5rem] p-4 bg-gradient-to-b from-white to-indigo-50">
-            <div class="text-center font-extrabold text-xl text-indigo-700">Home</div>
-            <div class="grid grid-cols-3 gap-3 mt-4">
-              <div class="rounded-2xl p-4 bg-gradient-to-b from-indigo-400 to-blue-600 text-white text-center">Sleep</div>
-              <div class="rounded-2xl p-4 bg-gradient-to-b from-indigo-400 to-blue-600 text-white text-center">Activity</div>
-              <div class="rounded-2xl p-4 bg-gradient-to-b from-indigo-400 to-blue-600 text-white text-center">Heart</div>
-            </div>
-            <div class="mt-4 rounded-2xl p-5 bg-gradient-to-b from-indigo-400 to-blue-700 text-white">
-              Insight: Engage in mindfulness to improve clarity.
-            </div>
-          </div>
+      <!-- Home Screenshot -->
+      <div class="relative perspective-1000 hidden md:block">
+        <div class="absolute -inset-4 bg-gradient-to-tr from-blue-500/30 via-cyan-400/20 to-indigo-500/30 blur-2xl rounded-[2rem]"></div>
+        <div class="relative mx-auto max-w-xs transform-gpu transition-transform duration-700 hover:scale-110 rotate-x-50 rotate-z-45" style="transform-style: preserve-3d;">
+          <img src="./assets/images/screenshots/home.jpeg" alt="Wellround Home Screen" class="w-full rounded-[1.5rem] shadow-2xl" style="transform: translateZ(20px);">
+          <!-- 3D shadow layer -->
+          <div class="absolute inset-0 rounded-[1.5rem] bg-black/20 blur-lg" style="transform: translateZ(-20px) translateY(10px) scale(0.95);"></div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- FEATURES -->
+  <!-- TRUSTED BY -->
+  <section class="max-w-7xl mx-auto px-6 pb-16">
+    <div class="text-center">
+      <h3 class="text-gray-500 text-sm font-medium mb-16">Backed and supported by</h3>
+      <div class="flex flex-wrap justify-center items-center gap-12 opacity-70 hover:opacity-90 transition-opacity">
+        <!-- Actual logo images with consistent sizing -->
+        <img src="./assets/images/logos/IEC_logo.png" alt="IEC" class="h-36 w-512 object-contain grayscale hover:grayscale-0 transition-all duration-300">
+        <img src="./assets/images/logos/MBZUAI_Logo.jpg" alt="MBZUAI" class="h-16 w-512 object-contain grayscale hover:grayscale-0 transition-all duration-300">
+        <img src="./assets/images/logos/Daco_6124179.png" alt="Partner" class="h-12 w-512 object-contain grayscale hover:grayscale-0 transition-all duration-300">
+        <img src="./assets/images/logos/antler_logo.png" alt="Antler" class="h-16 w-512 object-contain grayscale hover:grayscale-0 transition-all duration-300">
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURES
   <section id="features" class="max-w-7xl mx-auto px-6 pb-20">
     <h2 class="text-3xl md:text-4xl font-extrabold text-gray-900">What you get</h2>
     <div class="mt-8 grid md:grid-cols-3 gap-6">
@@ -122,9 +123,63 @@
         <p class="text-gray-600 mt-2">Local-first philosophy with encrypted sync across your devices.</p>
       </div>
     </div>
+  </section> -->
+
+  <!-- APP SCREENSHOTS -->
+  <section class="max-w-7xl mx-auto px-6 pb-20">
+    <div class="text-center mb-12">
+      <h2 class="text-3xl md:text-4xl font-extrabold text-gray-900">Experience Wellround</h2>
+      <p class="mt-4 text-gray-600 max-w-2xl mx-auto">Beautiful, intuitive design that makes wellness tracking a joy, not a chore</p>
+    </div>
+    
+    <div class="grid md:grid-cols-4 gap-6">
+      <!-- Home Screenshot -->
+      <div class="relative group">
+        <div class="absolute -inset-4 bg-gradient-to-tr from-blue-500/20 via-cyan-400/10 to-indigo-500/20 blur-xl rounded-[2rem] opacity-0 group-hover:opacity-100 transition-opacity"></div>
+        <div class="relative mx-auto w-44 transform-gpu transition-transform duration-700 hover:scale-105 hover:rotate-x-3 hover:rotate-y-2" style="transform-style: preserve-3d;">
+          <img src="./assets/images/screenshots/home.jpeg" alt="Wellround Home Screen" class="w-full rounded-[1.5rem] shadow-2xl" style="transform: translateZ(15px);">
+          <!-- 3D shadow layer -->
+          <div class="absolute inset-0 rounded-[1.5rem] bg-black/15 blur-lg" style="transform: translateZ(-15px) translateY(6px) scale(0.95);"></div>
+        </div>
+        <p class="text-center mt-4 text-sm text-gray-600 font-medium">Home Dashboard</p>
+      </div>
+
+      <!-- Sport Screenshot -->
+      <div class="relative group">
+        <div class="absolute -inset-4 bg-gradient-to-tr from-emerald-500/20 via-green-400/10 to-blue-500/20 blur-xl rounded-[2rem] opacity-0 group-hover:opacity-100 transition-opacity"></div>
+        <div class="relative mx-auto w-44 transform-gpu transition-transform duration-700 hover:scale-105 hover:rotate-x-3 hover:rotate-y-2" style="transform-style: preserve-3d;">
+          <img src="./assets/images/screenshots/home.jpeg" alt="Wellround Sport Screen" class="w-full rounded-[1.5rem] shadow-2xl" style="transform: translateZ(15px);">
+          <!-- 3D shadow layer -->
+          <div class="absolute inset-0 rounded-[1.5rem] bg-black/15 blur-lg" style="transform: translateZ(-15px) translateY(6px) scale(0.95);"></div>
+        </div>
+        <p class="text-center mt-4 text-sm text-gray-600 font-medium">Activity Tracking</p>
+      </div>
+
+      <!-- LLM Chat Screenshot -->
+      <div class="relative group">
+        <div class="absolute -inset-4 bg-gradient-to-tr from-purple-500/20 via-pink-400/10 to-indigo-500/20 blur-xl rounded-[2rem] opacity-0 group-hover:opacity-100 transition-opacity"></div>
+        <div class="relative mx-auto w-44 transform-gpu transition-transform duration-700 hover:scale-105 hover:rotate-x-3 hover:rotate-y-2" style="transform-style: preserve-3d;">
+          <img src="./assets/images/screenshots/home.jpeg" alt="Wellround AI Chat Screen" class="w-full rounded-[1.5rem] shadow-2xl" style="transform: translateZ(15px);">
+          <!-- 3D shadow layer -->
+          <div class="absolute inset-0 rounded-[1.5rem] bg-black/15 blur-lg" style="transform: translateZ(-15px) translateY(6px) scale(0.95);"></div>
+        </div>
+        <p class="text-center mt-4 text-sm text-gray-600 font-medium">AI Wellness Coach</p>
+      </div>
+
+      <!-- Sleep Insights Screenshot -->
+      <div class="relative group">
+        <div class="absolute -inset-4 bg-gradient-to-tr from-amber-500/20 via-orange-400/10 to-red-500/20 blur-xl rounded-[2rem] opacity-0 group-hover:opacity-100 transition-opacity"></div>
+        <div class="relative mx-auto w-44 transform-gpu transition-transform duration-700 hover:scale-105 hover:rotate-x-3 hover:rotate-y-2" style="transform-style: preserve-3d;">
+          <img src="./assets/images/screenshots/home.jpeg" alt="Wellround Sleep Insights" class="w-full rounded-[1.5rem] shadow-2xl" style="transform: translateZ(15px);">
+          <!-- 3D shadow layer -->
+          <div class="absolute inset-0 rounded-[1.5rem] bg-black/15 blur-lg" style="transform: translateZ(-15px) translateY(6px) scale(0.95);"></div>
+        </div>
+        <p class="text-center mt-4 text-sm text-gray-600 font-medium">Sleep Insights</p>
+      </div>
+    </div>
   </section>
 
-  <!-- INSIGHTS / CARDS -->
+  <!-- INSIGHTS / CARDS
   <section id="insights" class="max-w-7xl mx-auto px-6 pb-20">
     <div class="grid lg:grid-cols-3 gap-6">
       <div class="rounded-2xl p-6 bg-gradient-to-b from-indigo-400 to-blue-700 text-white">
@@ -140,26 +195,134 @@
         <p class="mt-2 opacity-90">Zone‑2 minutes reached your weekly target.</p>
       </div>
     </div>
+  </section> -->
+
+  <!-- MEET OUR TEAM -->
+  <section class="max-w-7xl mx-auto px-6 pb-20">
+    <div class="text-center p-8 md:p-12 rounded-3xl bg-gradient-to-br from-indigo-500 via-purple-500 to-blue-600 text-white relative overflow-hidden">
+      <!-- Background decoration -->
+      <div class="absolute -top-10 -right-10 h-40 w-40 rounded-full bg-white/10 blur-2xl"></div>
+      <div class="absolute -bottom-10 -left-10 h-32 w-32 rounded-full bg-white/10 blur-xl"></div>
+      
+      <div class="relative">
+        <h2 class="text-3xl md:text-5xl font-extrabold mb-4">Meet the minds behind Wellround</h2>
+        <p class="text-indigo-100 text-lg mb-8 max-w-2xl mx-auto">Our passionate team of wellness experts, designers, and developers are dedicated to helping you achieve daily harmony</p>
+        <a href="./team.html" class="inline-flex px-8 py-4 rounded-2xl bg-white text-indigo-600 font-semibold hover:bg-indigo-50 transition-colors shadow-[0_8px_30px_rgba(255,255,255,.3)]">
+          Meet our team →
+        </a>
+      </div>
+    </div>
   </section>
 
   <!-- PRICING -->
   <section id="pricing" class="max-w-7xl mx-auto px-6 pb-20">
-    <h2 class="text-3xl md:text-4xl font-extrabold text-gray-900">Simple pricing</h2>
-    <div class="grid md:grid-cols-3 gap-6 mt-8">
-      <div class="p-6 rounded-2xl bg-white/70 neo">
-        <h3 class="font-bold text-gray-900">Free</h3>
-        <p class="text-gray-600 mt-2">Basics, unlimited tracking.</p>
-        <button class="mt-5 w-full px-4 py-3 rounded-xl bg-white/50 text-gray-900">Start</button>
+    <div class="text-center mb-12">
+      <h2 class="text-3xl md:text-4xl font-extrabold text-gray-900">Enterprise wellness solutions</h2>
+      <p class="mt-4 text-gray-600 max-w-2xl mx-auto">Tailored wellness programs for organizations of all sizes. Let's discuss how Wellround can enhance your team's wellbeing.</p>
+    </div>
+    
+    <div class="grid md:grid-cols-3 gap-8">
+      <!-- Starter -->
+      <div class="relative group">
+        <div class="absolute -inset-4 bg-gradient-to-tr from-emerald-500/20 via-green-400/10 to-blue-500/20 blur-xl rounded-[2rem] opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+        <div class="relative p-8 rounded-2xl bg-white/70 neo text-center transform-gpu transition-transform duration-700 hover:scale-105 hover:rotate-x-3 hover:rotate-y-2" style="transform-style: preserve-3d;">
+          <h3 class="text-xl font-bold text-gray-900 mb-3">Starter</h3>
+          <p class="text-gray-600 mb-6">Perfect for small teams getting started with wellness tracking</p>
+          <div class="space-y-3 mb-8 text-sm text-gray-600">
+            <div class="flex items-center justify-center gap-2">
+              <span class="text-green-500">✓</span>
+              <span>Up to 25 employees</span>
+            </div>
+            <div class="flex items-center justify-center gap-2">
+              <span class="text-green-500">✓</span>
+              <span>Basic analytics dashboard</span>
+            </div>
+            <div class="flex items-center justify-center gap-2">
+              <span class="text-green-500">✓</span>
+              <span>Email support</span>
+            </div>
+          </div>
+          <a href="mailto:hello@wellround.ai?subject=Get%20Quote" class="w-full px-6 py-3 rounded-xl bg-white/60 hover:bg-white/80 text-gray-900 font-semibold transition-colors border-2 border-gray-300 hover:border-indigo-400 hover:shadow-md">
+            Get Quote
+          </a>
+        </div>
       </div>
-      <div class="p-6 rounded-2xl bg-gradient-to-b from-indigo-400 to-blue-700 text-white">
-        <h3 class="font-bold">Pro</h3>
-        <p class="opacity-90 mt-2">Insights, export, coach mode.</p>
-        <button class="mt-5 w-full px-4 py-3 rounded-xl bg-white text-gray-900">Choose Pro</button>
+
+      <!-- Professional -->
+      <div class="relative group">
+        <div class="absolute -inset-4 bg-gradient-to-tr from-indigo-500/30 via-purple-400/20 to-blue-500/30 blur-xl rounded-[2rem] opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+        <div class="relative p-8 rounded-2xl bg-gradient-to-b from-indigo-500 to-blue-700 text-white text-center transform-gpu transition-transform duration-700 hover:scale-105 hover:rotate-x-3 hover:rotate-y-2" style="transform-style: preserve-3d;">
+          <div class="absolute -top-3 left-1/2 -translate-x-1/2 px-4 py-1 bg-yellow-400 text-gray-900 text-xs font-semibold rounded-full">
+            Most Popular
+          </div>
+          <h3 class="text-xl font-bold mb-3">Professional</h3>
+          <p class="text-indigo-100 mb-6">Advanced features for growing organizations focused on employee wellness</p>
+          <div class="space-y-3 mb-8 text-sm text-indigo-100">
+            <div class="flex items-center justify-center gap-2">
+              <span class="text-white">✓</span>
+              <span>Up to 500 employees</span>
+            </div>
+            <div class="flex items-center justify-center gap-2">
+              <span class="text-white">✓</span>
+              <span>Advanced insights & reporting</span>
+            </div>
+            <div class="flex items-center justify-center gap-2">
+              <span class="text-white">✓</span>
+              <span>Custom integrations</span>
+            </div>
+            <div class="flex items-center justify-center gap-2">
+              <span class="text-white">✓</span>
+              <span>Dedicated account manager</span>
+            </div>
+          </div>
+          <a href="mailto:hello@wellround.ai?subject=Contact%20Sales" class="w-full px-6 py-3 rounded-xl bg-white text-indigo-600 font-semibold hover:bg-indigo-50 transition-colors border-2 border-white hover:border-indigo-200 shadow-md">
+            Contact Sales
+          </a>
+        </div>
       </div>
-      <div class="p-6 rounded-2xl bg-white/70 neo">
-        <h3 class="font-bold text-gray-900">Team</h3>
-        <p class="text-gray-600 mt-2">Family & friends challenges.</p>
-        <button class="mt-5 w-full px-4 py-3 rounded-xl bg-white/50 text-gray-900">Contact us</button>
+
+      <!-- Enterprise -->
+      <div class="relative group">
+        <div class="absolute -inset-4 bg-gradient-to-tr from-amber-500/20 via-orange-400/10 to-red-500/20 blur-xl rounded-[2rem] opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+        <div class="relative p-8 rounded-2xl bg-white/70 neo text-center transform-gpu transition-transform duration-700 hover:scale-105 hover:rotate-x-3 hover:rotate-y-2" style="transform-style: preserve-3d;">
+          <h3 class="text-xl font-bold text-gray-900 mb-3">Enterprise</h3>
+          <p class="text-gray-600 mb-6">Complete wellness platform with white-label options and full customization</p>
+          <div class="space-y-3 mb-8 text-sm text-gray-600">
+            <div class="flex items-center justify-center gap-2">
+              <span class="text-green-500">✓</span>
+              <span>Unlimited employees</span>
+            </div>
+            <div class="flex items-center justify-center gap-2">
+              <span class="text-green-500">✓</span>
+              <span>White-label solutions</span>
+            </div>
+            <div class="flex items-center justify-center gap-2">
+              <span class="text-green-500">✓</span>
+              <span>On-premise deployment</span>
+            </div>
+            <div class="flex items-center justify-center gap-2">
+              <span class="text-green-500">✓</span>
+              <span>24/7 priority support</span>
+            </div>
+          </div>
+          <a href="mailto:hello@wellround.ai?subject=Schedule%20Demo"n class="w-full px-6 py-3 rounded-xl bg-white/60 hover:bg-white/80 text-gray-900 font-semibold transition-colors border-2 border-gray-300 hover:border-indigo-400 hover:shadow-md">
+            Schedule Demo
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- CTA Section -->
+    <div class="mt-16 text-center p-8 rounded-2xl glass">
+      <h3 class="text-2xl font-bold text-gray-900 mb-4">Ready to transform your organization's wellness?</h3>
+      <p class="text-gray-600 mb-6 max-w-2xl mx-auto">Join forward-thinking companies who trust Wellround to enhance their team's daily harmony and productivity.</p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href="./contact.html" class="px-8 py-3 rounded-xl bg-gradient-to-tr from-blue-500 to-indigo-500 text-white font-semibold shadow-[0_6px_20px_rgba(59,130,246,.45)] hover:shadow-[0_8px_25px_rgba(59,130,246,.5)] transition-shadow">
+          Contact Us Today
+        </a>
+        <a href="mailto:hello@wellround.ai?subject=Request%20Demo" class="px-8 py-3 rounded-xl bg-white/60 hover:bg-white/80 text-gray-900 font-semibold transition-colors border-2 border-gray-300 hover:border-indigo-400 hover:shadow-md flex items-center justify-center">
+            Request Demo
+        </a>
       </div>
     </div>
   </section>
@@ -179,12 +342,79 @@
     </div>
   </section>
 
+  <!-- NEWSLETTER SIGNUP -->
+  <section class="max-w-4xl mx-auto px-6 pb-20">
+    <div class="p-8 md:p-12 rounded-3xl glass text-center">
+      <h2 class="text-3xl md:text-4xl font-extrabold text-gray-900 mb-4">Stay in the loop</h2>
+      <p class="text-gray-600 mb-8 max-w-2xl mx-auto">Get wellness tips, feature updates, and exclusive insights delivered to your inbox weekly</p>
+      
+      <div class="max-w-md mx-auto">
+        <button class="px-6 py-3 rounded-xl bg-gradient-to-tr from-blue-500 to-indigo-500 text-white font-semibold shadow-[0_6px_20px_rgba(59,130,246,.45)] hover:shadow-[0_8px_25px_rgba(59,130,246,.5)] transition-shadow">
+            Fill the form!
+          </button>
+        <p class="text-xs text-gray-500 mt-3">No spam, unsubscribe anytime. Read our <a href="privacy_policy.html" class="text-blue-500 hover:underline">privacy policy</a>.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SOCIAL PROOF / TESTIMONIALS -->
+  <!-- <section class="max-w-7xl mx-auto px-6 pb-20">
+    <div class="text-center mb-12">
+      <h2 class="text-3xl md:text-4xl font-extrabold text-gray-900 mb-4">What our users say</h2>
+      <p class="text-gray-600">Join thousands of people who've transformed their wellness journey</p>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-6">
+      <div class="p-6 rounded-2xl bg-white/70 neo">
+        <div class="flex items-center mb-4">
+          <div class="h-10 w-10 rounded-full bg-gradient-to-br from-blue-400 to-indigo-500"></div>
+          <div class="ml-3">
+            <p class="font-semibold text-gray-900">Sarah M.</p>
+            <p class="text-sm text-gray-500">Product Designer</p>
+          </div>
+        </div>
+        <p class="text-gray-600">"Wellround helped me understand my sleep patterns and improve my energy levels. The insights are spot-on!"</p>
+        <div class="flex mt-3 text-yellow-400">
+          ★★★★★
+        </div>
+      </div>
+
+      <div class="p-6 rounded-2xl bg-white/70 neo">
+        <div class="flex items-center mb-4">
+          <div class="h-10 w-10 rounded-full bg-gradient-to-br from-emerald-400 to-green-500"></div>
+          <div class="ml-3">
+            <p class="font-semibold text-gray-900">Alex K.</p>
+            <p class="text-sm text-gray-500">Software Engineer</p>
+          </div>
+        </div>
+        <p class="text-gray-600">"Finally, a wellness app that doesn't overwhelm me. Clean design and actionable insights that actually work."</p>
+        <div class="flex mt-3 text-yellow-400">
+          ★★★★★
+        </div>
+      </div>
+
+      <div class="p-6 rounded-2xl bg-white/70 neo">
+        <div class="flex items-center mb-4">
+          <div class="h-10 w-10 rounded-full bg-gradient-to-br from-purple-400 to-pink-500"></div>
+          <div class="ml-3">
+            <p class="font-semibold text-gray-900">Maya R.</p>
+            <p class="text-sm text-gray-500">Yoga Instructor</p>
+          </div>
+        </div>
+        <p class="text-gray-600">"The mindfulness tracking feature is incredible. It's helped me maintain consistency in my meditation practice."</p>
+        <div class="flex mt-3 text-yellow-400">
+          ★★★★★
+        </div>
+      </div>
+    </div>
+  </section> -->
+
   <footer class="max-w-7xl mx-auto px-6 pb-10 text-gray-600 text-sm flex items-center justify-between">
-    <p>© Wellround 2025</p>
+    <p>© Wellround LLC 2025</p>
     <div class="flex gap-6">
-      <a href="#">Privacy</a>
-      <a href="#">Terms</a>
-      <a href="#">Contact</a>
+      <a href="privacy_policy.html">Privacy</a>
+      <a href="terms_of_service.html">Terms</a>
+      <a href="contact.html">Contact</a>
     </div>
   </footer>
 </body>
