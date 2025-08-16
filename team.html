@@ -273,3 +273,7 @@
   </footer>
 </body>
 </html>
+
+from PIL import Image; Image.open("IEC_logo.png").convert("RGBA").point(lambda p: 0 if p == 255 else p).save("IEC_logo_black.png")
+from PIL import Image; Image.open("IEC_logo.png").convert("L").point(lambda p: 0 if p>200 else p).save("IEC_logo_black.png")
+from PIL import Image; import numpy as np; im=Image.open("IEC_logo.png").convert("RGBA"); a=np.array(im); m=(a[...,:3]>=230).all(-1); a[m,:3]=0; Image.fromarray(a).save("IEC_logo_black.png")
