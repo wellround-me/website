@@ -129,9 +129,45 @@
       <p class="mt-4 text-gray-600 max-w-2xl mx-auto">Beautiful, intuitive design that makes wellness tracking a joy, not a chore</p>
     </div>
     
-    <div class="grid md:grid-cols-4 gap-6">
+    <!-- Mobile: Horizontal scrollable carousel, Desktop: Grid -->
+    <div class="screenshot-container">
+      <style>
+        /* Mobile: Horizontal scrollable carousel */
+        @media (max-width: 767px) {
+          .screenshot-container {
+            display: flex;
+            overflow-x: auto;
+            gap: 1.5rem;
+            padding-bottom: 1rem;
+            scroll-behavior: smooth;
+            scroll-snap-type: x mandatory;
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+          }
+          .screenshot-container::-webkit-scrollbar {
+            display: none;
+          }
+          .screenshot-item {
+            flex: 0 0 auto;
+            width: 200px;
+            scroll-snap-align: start;
+          }
+        }
+        
+        /* Desktop: Clean grid layout */
+        @media (min-width: 768px) {
+          .screenshot-container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+          }
+          .screenshot-item {
+            width: auto;
+          }
+        }
+      </style>
       <!-- Home Screenshot -->
-      <div class="relative group">
+      <div class="relative group screenshot-item">
         <div class="absolute -inset-4 bg-gradient-to-tr from-blue-500/20 via-cyan-400/10 to-indigo-500/20 blur-xl rounded-[2rem] opacity-0 group-hover:opacity-100 transition-opacity"></div>
         <div class="relative mx-auto w-44 transform-gpu transition-transform duration-700 hover:scale-105 hover:rotate-x-3 hover:rotate-y-2" style="transform-style: preserve-3d;">
           <img src="./assets/images/screenshots/home.jpeg" alt="Wellround Home Screen" class="w-full rounded-[1.5rem] shadow-2xl" style="transform: translateZ(15px);">
@@ -142,7 +178,7 @@
       </div>
 
       <!-- Sport Screenshot -->
-      <div class="relative group">
+      <div class="relative group screenshot-item">
         <div class="absolute -inset-4 bg-gradient-to-tr from-emerald-500/20 via-green-400/10 to-blue-500/20 blur-xl rounded-[2rem] opacity-0 group-hover:opacity-100 transition-opacity"></div>
         <div class="relative mx-auto w-44 transform-gpu transition-transform duration-700 hover:scale-105 hover:rotate-x-3 hover:rotate-y-2" style="transform-style: preserve-3d;">
           <img src="./assets/images/screenshots/sport.jpeg" alt="Wellround Sport Screen" class="w-full rounded-[1.5rem] shadow-2xl" style="transform: translateZ(15px);">
@@ -153,7 +189,7 @@
       </div>
 
       <!-- LLM Chat Screenshot -->
-      <div class="relative group">
+      <div class="relative group screenshot-item">
         <div class="absolute -inset-4 bg-gradient-to-tr from-purple-500/20 via-pink-400/10 to-indigo-500/20 blur-xl rounded-[2rem] opacity-0 group-hover:opacity-100 transition-opacity"></div>
         <div class="relative mx-auto w-44 transform-gpu transition-transform duration-700 hover:scale-105 hover:rotate-x-3 hover:rotate-y-2" style="transform-style: preserve-3d;">
           <img src="./assets/images/screenshots/chat.jpeg" alt="Wellround AI Chat Screen" class="w-full rounded-[1.5rem] shadow-2xl" style="transform: translateZ(15px);">
@@ -164,7 +200,7 @@
       </div>
 
       <!-- Sleep Insights Screenshot -->
-      <div class="relative group">
+      <div class="relative group screenshot-item">
         <div class="absolute -inset-4 bg-gradient-to-tr from-amber-500/20 via-orange-400/10 to-red-500/20 blur-xl rounded-[2rem] opacity-0 group-hover:opacity-100 transition-opacity"></div>
         <div class="relative mx-auto w-44 transform-gpu transition-transform duration-700 hover:scale-105 hover:rotate-x-3 hover:rotate-y-2" style="transform-style: preserve-3d;">
           <img src="./assets/images/screenshots/sleep.jpeg" alt="Wellround Sleep Insights" class="w-full rounded-[1.5rem] shadow-2xl" style="transform: translateZ(15px);">
@@ -173,6 +209,19 @@
         </div>
         <p class="text-center mt-4 text-sm text-gray-600 font-medium">Sleep Insights</p>
       </div>
+    </div>
+
+    <!-- Mobile scroll indicator (optional) -->
+    <div class="flex justify-center mt-6 md:hidden">
+      <p class="text-xs text-gray-500 flex items-center gap-2">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16l4-4m0 0l4 4m-4-4v12"></path>
+        </svg>
+        Swipe to explore more
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+        </svg>
+      </p>
     </div>
 
     <!-- Explore More CTA -->
