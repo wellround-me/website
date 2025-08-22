@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Login & Registration Guide — Wellround</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="icon" type="image/x-icon" href="./assets/images/favicon.ico">
+  <link rel="preconnect" href="https://cdn.tailwindcss.com">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
+  <style>
+    * { font-family: 'Plus Jakarta Sans', system-ui, -apple-system, Segoe UI, Roboto, Inter, Helvetica, Arial, sans-serif; }
+    .neo { box-shadow: 6px 10px 24px rgba(0,30,60,.15), -6px -10px 24px rgba(255,255,255,.4); }
+    .glass { backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); background: linear-gradient(180deg, rgba(255,255,255,.9), rgba(255,255,255,.6)); border: 1px solid rgba(255,255,255,.7); }
+    .step-number {
+      background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+      color: white;
+      border-radius: 50%;
+      width: 2.5rem;
+      height: 2.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      font-size: 1.1rem;
+      flex-shrink: 0;
+      min-width: 2.5rem;
+      min-height: 2.5rem;
+    }
+    .platform-tab {
+      transition: all 0.3s ease;
+    }
+    .platform-tab.active {
+      background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+      color: white;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(59,130,246,.3);
+    }
+  </style>
+  <script>
+    function showPlatform(platform) {
+      // Hide all platform sections
+      document.getElementById('ios-guide').style.display = 'none';
+      document.getElementById('android-guide').style.display = 'none';
+      document.getElementById('dashboard-guide').style.display = 'none';
+      
+      // Show selected platform
+      document.getElementById(platform + '-guide').style.display = 'block';
+      
+      // Update tab states
+      document.getElementById('ios-tab').classList.remove('active');
+      document.getElementById('android-tab').classList.remove('active');
+      document.getElementById('dashboard-tab').classList.remove('active');
+      document.getElementById(platform + '-tab').classList.add('active');
+    }
+    
+    // Show iOS by default when page loads
+    window.addEventListener('DOMContentLoaded', function() {
+      showPlatform('ios');
+    });
+  </script>
+</head>
+<body class="bg-gradient-to-br from-sky-50 via-indigo-50 to-white text-gray-800 overflow-x-hidden">
+  <!-- Soft gradient blobs -->
+  <div class="pointer-events-none fixed inset-0 -z-10">
+    <div class="absolute -top-24 -left-24 h-96 w-96 rounded-full blur-3xl opacity-50" style="background: radial-gradient(60% 60% at 50% 50%, #93c5fd 0%, rgba(147,197,253,0) 70%), radial-gradient(40% 40% at 30% 30%, #60a5fa 0%, rgba(96,165,250,0) 80%);"></div>
+    <div class="absolute top-32 -right-20 h-[28rem] w-[28rem] rounded-full blur-[90px] opacity-40" style="background: radial-gradient(60% 60% at 50% 50%, #c4b5fd 0%, rgba(196,181,253,0) 70%), radial-gradient(50% 50% at 70% 30%, #38bdf8 0%, rgba(56,189,248,0) 80%);"></div>
+    <div class="absolute bottom-0 left-1/2 -translate-x-1/2 h-80 w-[36rem] rounded-[40%] rotate-6 blur-[80px] opacity-40" style="background: radial-gradient(60% 60% at 50% 50%, #fde68a 0%, rgba(253,230,138,0) 70%), radial-gradient(50% 50% at 30% 70%, #93c5fd 0%, rgba(147,197,253,0) 80%);"></div>
+  </div>
+
+  <!-- NAVBAR -->
+  <header class="max-w-7xl mx-auto px-6 pt-6">
+    <nav class="flex items-center justify-between p-3 rounded-2xl glass text-gray-900">
+      <div class="flex-1 flex items-center gap-3">
+        <img src="./assets/images/logo.webp" width="50" height="50" alt="Wellround Logo">
+        <span class="font-extrabold text-lg tracking-tight">Wellround</span>
+      </div>
+      <div class="hidden md:flex items-center gap-6 text-sm">
+        <a class="hover:opacity-80" href="./">Home</a>
+        <a class="hover:opacity-80" href="./about.html">About</a> 
+        <a class="hover:opacity-80" href="./team.html">Team</a>
+        <a class="hover:opacity-80 font-semibold text-blue-600" href="./login-guide.html">Guide</a>
+        <a class="hover:opacity-80" href="./contact.html">Contact</a>
+      </div>
+      <div class="flex-1 flex items-center justify-end gap-3">
+        <a href="https://dashboard.wellround.me" target="_blank" class="hidden md:inline-flex text-sm text-gray-500 hover:text-indigo-600 transition-colors pr-2">Go to Dashboard</a>
+        <a href="https://forms.zohopublic.in/adminwell1/form/JointheWellroundBetaatMBZUAI/formperma/m2n8ERITdzq9XYBROaiO9evQRCnMh5Qx9WMT8Mz8Mbk" class="px-4 py-2 rounded-xl bg-gradient-to-tr from-amber-500 to-orange-500 text-white shadow-[0_6px_20px_rgba(245,158,11,.45)] hover:shadow-[0_8px_25px_rgba(245,158,11,.5)] transition-shadow">Get the app</a>
+      </div>
+    </nav>
+  </header>
+
+  <!-- HERO SECTION -->
+  <section class="max-w-7xl mx-auto px-6 pt-20 pb-12">
+    <div class="text-center">
+      <h1 class="text-4xl md:text-6xl font-extrabold leading-tight text-gray-900 mb-6">
+        Getting Started with <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-500 via-sky-400 to-indigo-500">Wellround</span>
+      </h1>
+      <p class="text-xl text-gray-600 max-w-3xl mx-auto mb-8">
+        Your complete guide to registering, logging in, and setting up your personalized wellness journey. Follow these simple steps to unlock your daily harmony.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href="#registration" class="px-6 py-3 rounded-xl bg-gradient-to-tr from-blue-500 to-indigo-500 text-white font-semibold shadow-[0_6px_20px_rgba(59,130,246,.45)] hover:shadow-[0_8px_25px_rgba(59,130,246,.5)] transition-shadow">
+          Start Registration →
+        </a>
+        <a href="#login" class="px-6 py-3 rounded-xl bg-white/60 hover:bg-white/80 text-gray-900 font-semibold transition-colors border-2 border-gray-300 hover:border-indigo-400 hover:shadow-md">
+          Login Guide
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- REGISTRATION PROCESS -->
+  <section id="registration" class="max-w-5xl mx-auto px-6 pb-16">
+    <div class="text-center mb-12">
+      <h2 class="text-3xl md:text-4xl font-extrabold text-gray-900 mb-4">Registration Process</h2>
+      <p class="text-gray-600 max-w-2xl mx-auto">Join thousands of users who have already started their wellness journey with Wellround. Registration is quick, secure, and completely free.</p>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-12 items-start">
+      <!-- Steps -->
+      <div class="space-y-6">
+        <!-- Step 1 -->
+        <div class="flex gap-4 items-start">
+          <div class="step-number">1</div>
+          <div class="flex-1">
+            <h3 class="text-xl font-bold text-gray-900 mb-2">Fill the Beta Form</h3>
+            <p class="text-gray-600 mb-3">Start by completing our beta registration form. This helps us understand your wellness goals and ensures you get the most relevant experience.</p>
+            <a href="https://forms.zohopublic.in/adminwell1/form/JointheWellroundBetaatMBZUAI/formperma/m2n8ERITdzq9XYBROaiO9evQRCnMh5Qx9WMT8Mz8Mbk" target="_blank" class="inline-flex text-blue-600 hover:text-blue-700 font-medium">
+              Fill Beta Form →
+            </a>
+          </div>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="flex gap-4 items-start">
+          <div class="step-number">2</div>
+          <div class="flex-1">
+            <h3 class="text-xl font-bold text-gray-900 mb-2">Receive Invitation</h3>
+            <p class="text-gray-600">Once you submit the form, our team will review your application. You'll receive an email invitation with your unique access credentials within 24-48 hours.</p>
+          </div>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="flex gap-4 items-start">
+          <div class="step-number">3</div>
+          <div class="flex-1">
+            <h3 class="text-xl font-bold text-gray-900 mb-2">Download the App</h3>
+            <p class="text-gray-600 mb-3">Available on both iOS and Android platforms. The download links will be provided in your invitation email.</p>  
+          </div>
+        </div>
+
+        <!-- Step 4 -->
+        <div class="flex gap-4 items-start">
+          <div class="step-number">4</div>
+          <div class="flex-1">
+            <h3 class="text-xl font-bold text-gray-900 mb-2">Create Your Account</h3>
+            <p class="text-gray-600">Use your invitation code to create your account. You'll set up your profile, wellness preferences, and privacy settings during this step.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Visual/Info Panel -->
+      <div class="p-8 rounded-2xl glass neo">
+        <h3 class="text-2xl font-bold text-gray-900 mb-4">What You'll Need</h3>
+        <div class="space-y-4">
+          <div class="flex items-start gap-3">
+            <div class="w-2 h-2 bg-blue-500 rounded-full mt-2"></div>
+            <div>
+              <p class="font-semibold text-gray-900">Valid Email Address</p>
+              <p class="text-sm text-gray-600">For account verification and updates</p>
+            </div>
+          </div>
+          <div class="flex items-start gap-3">
+            <div class="w-2 h-2 bg-blue-500 rounded-full mt-2"></div>
+            <div>
+              <p class="font-semibold text-gray-900">Mobile Device</p>
+              <p class="text-sm text-gray-600">iOS 14+ or Android 8+ required</p>
+            </div>
+          </div>
+          <div class="flex items-start gap-3">
+            <div class="w-2 h-2 bg-blue-500 rounded-full mt-2"></div>
+            <div>
+              <p class="font-semibold text-gray-900">Health Data (Optional)</p>
+              <p class="text-sm text-gray-600">Connect fitness trackers for richer insights</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-8 p-4 bg-blue-50 rounded-xl border border-blue-200">
+          <h4 class="font-semibold text-blue-900 mb-2">💡 Beta Access</h4>
+          <p class="text-sm text-blue-800">As a beta user, you'll get exclusive access to new features, direct feedback channels with our team, and special pricing when we launch publicly.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LOGIN PROCESS -->
+  <section id="login" class="max-w-5xl mx-auto px-6 pb-16">
+    <div class="text-center mb-8">
+      <h2 class="text-3xl md:text-4xl font-extrabold text-gray-900 mb-4">Login Guide</h2>
+      <p class="text-gray-600 max-w-2xl mx-auto">Already have an account? Here's how to access your Wellround app and web dashboard.</p>
+    </div>
+
+    <!-- Platform Selection -->
+    <div class="flex justify-center mb-12">
+      <div class="flex bg-white/70 p-2 rounded-2xl glass">
+        <button id="ios-tab" onclick="showPlatform('ios')" class="platform-tab px-6 py-3 rounded-xl font-semibold transition-all flex items-center gap-2">
+          🍎 iOS Guide
+        </button>
+        <button id="android-tab" onclick="showPlatform('android')" class="platform-tab px-6 py-3 rounded-xl font-semibold transition-all flex items-center gap-2">
+          🤖 Android Guide
+        </button>
+        <button id="dashboard-tab" onclick="showPlatform('dashboard')" class="platform-tab px-6 py-3 rounded-xl font-semibold transition-all flex items-center gap-2">
+          💻 Dashboard
+        </button>
+      </div>
+    </div>
+
+    <!-- iOS Guide -->
+    <div id="ios-guide" style="display: none;">
+      <div class="grid md:grid-cols-2 gap-8">
+        <!-- iOS Mobile App Login -->
+        <div class="p-8 rounded-2xl glass neo">
+          <div class="flex items-center gap-3 mb-6">
+            <div class="w-12 h-12 bg-gradient-to-tr from-blue-500 to-indigo-500 rounded-xl flex items-center justify-center text-white text-xl">🍎</div>
+            <div>
+              <h3 class="text-xl font-bold text-gray-900">iOS App Login</h3>
+              <p class="text-sm text-gray-600">iPhone & iPad</p>
+            </div>
+          </div>
+
+          <div class="space-y-4">
+            <div class="flex gap-3">
+              <div class="w-6 h-6 bg-blue-100 rounded-full flex items-center justify-center text-blue-600 text-sm font-bold mt-1">1</div>
+              <div>
+                <p class="font-semibold text-gray-900">Download from App Store</p>
+                <p class="text-sm text-gray-600">Search "Wellround" or use the link from your invitation email</p>
+              </div>
+            </div>
+            <div class="flex gap-3">
+              <div class="w-6 h-6 bg-blue-100 rounded-full flex items-center justify-center text-blue-600 text-sm font-bold mt-1">2</div>
+              <div>
+                <p class="font-semibold text-gray-900">Open the App</p>
+                <p class="text-sm text-gray-600">Tap the Wellround icon on your home screen</p>
+              </div>
+            </div>
+            <div class="flex gap-3">
+              <div class="w-6 h-6 bg-blue-100 rounded-full flex items-center justify-center text-blue-600 text-sm font-bold mt-1">3</div>
+              <div>
+                <p class="font-semibold text-gray-900">Enter Your Credentials</p>
+                <p class="text-sm text-gray-600">Use your registered email and password from the invitation</p>
+              </div>
+            </div>
+            <div class="flex gap-3">
+              <div class="w-6 h-6 bg-blue-100 rounded-full flex items-center justify-center text-blue-600 text-sm font-bold mt-1">4</div>
+              <div>
+                <p class="font-semibold text-gray-900">Enable Face ID/Touch ID</p>
+                <p class="text-sm text-gray-600">Set up biometric login for quick and secure access</p>
+              </div>
+            </div>
+            <div class="flex gap-3">
+              <div class="w-6 h-6 bg-blue-100 rounded-full flex items-center justify-center text-blue-600 text-sm font-bold mt-1">5</div>
+              <div>
+                <p class="font-semibold text-gray-900">Grant Health Access</p>
+                <p class="text-sm text-gray-600">Allow access to Apple Health for comprehensive wellness tracking</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- iOS Setup Tips -->
+        <div class="p-8 rounded-2xl glass neo">
+          <h3 class="text-2xl font-bold text-gray-900 mb-4">iOS Setup Tips</h3>
+          <div class="space-y-4">
+            <div class="flex items-start gap-3">
+              <div class="w-2 h-2 bg-blue-500 rounded-full mt-2"></div>
+              <div>
+                <p class="font-semibold text-gray-900">Apple Health Integration</p>
+                <p class="text-sm text-gray-600">Connect seamlessly with Apple Health for automatic data sync</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-3">
+              <div class="w-2 h-2 bg-blue-500 rounded-full mt-2"></div>
+              <div>
+                <p class="font-semibold text-gray-900">Notification Permissions</p>
+                <p class="text-sm text-gray-600">Enable notifications for wellness reminders and insights</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-3">
+              <div class="w-2 h-2 bg-blue-500 rounded-full mt-2"></div>
+              <div>
+                <p class="font-semibold text-gray-900">Background App Refresh</p>
+                <p class="text-sm text-gray-600">Keep enabled for continuous health data tracking</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-3">
+              <div class="w-2 h-2 bg-blue-500 rounded-full mt-2"></div>
+              <div>
+                <p class="font-semibold text-gray-900">Siri Shortcuts</p>
+                <p class="text-sm text-gray-600">Add Wellround shortcuts for quick access to features</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="mt-8 p-4 bg-blue-50 rounded-xl border border-blue-200">
+            <h4 class="font-semibold text-blue-900 mb-2">🍎 iOS Requirements</h4>
+            <p class="text-sm text-blue-800">iOS 14.0 or later • iPhone 6s and newer • iPad (5th generation) and newer</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Dashboard Guide -->
+    <div id="dashboard-guide" style="display: none;">
+      <div class="max-w-3xl mx-auto">
+        <!-- Dashboard Access Notice -->
+        <div class="mb-8 p-6 bg-gradient-to-br from-blue-50 to-indigo-50 rounded-2xl border-2 border-blue-200">
+          <div class="flex items-start gap-3">
+            <div>
+              <h4 class="font-bold text-blue-900 mb-2">Dashboard Access Available</h4>
+              <p class="text-blue-800 text-sm">The Wellround Dashboard is available for university admin who have received access confirmation via email from our team. If you haven't received access yet, please contact us to request dashboard permissions.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Dashboard Login Steps -->
+        <div class="p-8 rounded-2xl glass neo">
+          <div class="flex items-center gap-3 mb-6">
+            <div class="w-12 h-12 bg-gradient-to-tr from-indigo-500 to-purple-500 rounded-xl flex items-center justify-center text-white text-xl">💻</div>
+            <div>
+              <h3 class="text-xl font-bold text-gray-900">Web Dashboard Access</h3>
+              <p class="text-sm text-gray-600">For authorized users</p>
+            </div>
+          </div>
+
+          <div class="space-y-4 mb-6">
+            <div class="flex gap-3">
+              <div class="w-6 h-6 bg-indigo-100 rounded-full flex items-center justify-center text-indigo-600 text-sm font-bold mt-1">1</div>
+              <div>
+                <p class="font-semibold text-gray-900">Visit Wellround Dashboard</p>
+                <p class="text-sm text-gray-600">Navigate to dashboard.wellround.me</p>
+              </div>
+            </div>
+            <div class="flex gap-3">
+              <div class="w-6 h-6 bg-indigo-100 rounded-full flex items-center justify-center text-indigo-600 text-sm font-bold mt-1">2</div>
+              <div>
+                <p class="font-semibold text-gray-900">Enter Your Credentials</p>
+                <p class="text-sm text-gray-600">Use your registered email and password provided in your access confirmation email</p>
+              </div>
+            </div>
+            <div class="flex gap-3">
+              <div class="w-6 h-6 bg-indigo-100 rounded-full flex items-center justify-center text-indigo-600 text-sm font-bold mt-1">4</div>
+              <div>
+                <p class="font-semibold text-gray-900">Access Dashboard Features</p>
+                <p class="text-sm text-gray-600">View your wellness analytics, manage your profile, and explore advanced features</p>
+              </div>
+            </div>
+          </div>
+
+          <a href="https://dashboard.wellround.me" target="_blank" class="w-full inline-flex items-center justify-center px-4 py-2 rounded-xl bg-gradient-to-tr from-indigo-500 to-purple-500 text-white font-semibold hover:shadow-lg transition-shadow mb-4">
+            Open Dashboard →
+          </a>
+        </div>
+
+        <!-- Dashboard Support -->
+        <div class="mt-8 p-6 rounded-2xl bg-gray-50 border border-gray-200">
+          <h4 class="font-bold text-gray-900 mb-3">Need Dashboard Access?</h4>
+          <p class="text-gray-600 mb-4">If you haven't received a dashboard access confirmation email from our team yet, please contact us to request access to the web dashboard features.</p>
+          <div class="flex flex-col sm:flex-row gap-3">
+            <a href="mailto:admin@wellround.ai?subject=Dashboard%20Access%20Request" class="px-4 py-2 bg-indigo-600 text-white rounded-xl hover:bg-indigo-700 transition-colors text-center">
+              Request Dashboard Access
+            </a>
+            <a href="./contact.html" class="px-4 py-2 bg-gray-200 text-gray-700 rounded-xl hover:bg-gray-300 transition-colors text-center">
+              Contact Support
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Android Guide -->
+    <div id="android-guide" style="display: none;">
+      <div class="grid md:grid-cols-2 gap-8">
+        <!-- Android Mobile App Login -->
+        <div class="p-8 rounded-2xl glass neo">
+          <div class="flex items-center gap-3 mb-6">
+            <div class="w-12 h-12 bg-gradient-to-tr from-green-500 to-emerald-500 rounded-xl flex items-center justify-center text-white text-xl">🤖</div>
+            <div>
+              <h3 class="text-xl font-bold text-gray-900">Android App Login</h3>
+              <p class="text-sm text-gray-600">Android phones & tablets</p>
+            </div>
+          </div>
+
+          <div class="space-y-4">
+            <div class="flex gap-3">
+              <div class="w-6 h-6 bg-green-100 rounded-full flex items-center justify-center text-green-600 text-sm font-bold mt-1">1</div>
+              <div>
+                <p class="font-semibold text-gray-900">Download from Google Play</p>
+                <p class="text-sm text-gray-600">Search "Wellround" or use the link from your invitation email</p>
+              </div>
+            </div>
+            <div class="flex gap-3">
+              <div class="w-6 h-6 bg-green-100 rounded-full flex items-center justify-center text-green-600 text-sm font-bold mt-1">2</div>
+              <div>
+                <p class="font-semibold text-gray-900">Open the App</p>
+                <p class="text-sm text-gray-600">Tap the Wellround icon in your app drawer</p>
+              </div>
+            </div>
+            <div class="flex gap-3">
+              <div class="w-6 h-6 bg-green-100 rounded-full flex items-center justify-center text-green-600 text-sm font-bold mt-1">3</div>
+              <div>
+                <p class="font-semibold text-gray-900">Enter Your Credentials</p>
+                <p class="text-sm text-gray-600">Use your registered email and password from the invitation</p>
+              </div>
+            </div>
+            <div class="flex gap-3">
+              <div class="w-6 h-6 bg-green-100 rounded-full flex items-center justify-center text-green-600 text-sm font-bold mt-1">4</div>
+              <div>
+                <p class="font-semibold text-gray-900">Enable Biometric Login</p>
+                <p class="text-sm text-gray-600">Set up fingerprint or face unlock for quick access</p>
+              </div>
+            </div>
+            <div class="flex gap-3">
+              <div class="w-6 h-6 bg-green-100 rounded-full flex items-center justify-center text-green-600 text-sm font-bold mt-1">5</div>
+              <div>
+                <p class="font-semibold text-gray-900">Connect Google Fit</p>
+                <p class="text-sm text-gray-600">Link with Google Fit for comprehensive health data tracking</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Android Setup Tips -->
+        <div class="p-8 rounded-2xl glass neo">
+          <h3 class="text-2xl font-bold text-gray-900 mb-4">Android Setup Tips</h3>
+          <div class="space-y-4">
+            <div class="flex items-start gap-3">
+              <div class="w-2 h-2 bg-green-500 rounded-full mt-2"></div>
+              <div>
+                <p class="font-semibold text-gray-900">Google Fit Integration</p>
+                <p class="text-sm text-gray-600">Connect with Google Fit for automatic fitness data sync</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-3">
+              <div class="w-2 h-2 bg-green-500 rounded-full mt-2"></div>
+              <div>
+                <p class="font-semibold text-gray-900">Battery Optimization</p>
+                <p class="text-sm text-gray-600">Disable battery optimization for Wellround to ensure continuous tracking</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-3">
+              <div class="w-2 h-2 bg-green-500 rounded-full mt-2"></div>
+              <div>
+                <p class="font-semibold text-gray-900">Notification Access</p>
+                <p class="text-sm text-gray-600">Grant notification permissions for wellness reminders and insights</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-3">
+              <div class="w-2 h-2 bg-green-500 rounded-full mt-2"></div>
+              <div>
+                <p class="font-semibold text-gray-900">Wearable Sync</p>
+                <p class="text-sm text-gray-600">Connect your Wear OS device for enhanced activity tracking</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="mt-8 p-4 bg-green-50 rounded-xl border border-green-200">
+            <h4 class="font-semibold text-green-900 mb-2">🤖 Android Requirements</h4>
+            <p class="text-sm text-green-800">Android 8.0 (API level 26) or higher • 2GB RAM minimum • 500MB free storage</p>        </div>
+      </div>
+    </div>
+
+    
+  </section>
+
+  <!-- TROUBLESHOOTING -->
+  <section class="max-w-5xl mx-auto px-6 pb-16">
+    <div class="text-center mb-12">
+      <h2 class="text-3xl md:text-4xl font-extrabold text-gray-900 mb-4">Troubleshooting</h2>
+      <p class="text-gray-600 max-w-2xl mx-auto">Having issues? Here are solutions to common problems.</p>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-6">
+      <!-- FAQ Items -->
+      <div class="space-y-4">
+        <details class="p-6 rounded-2xl bg-white/70 neo">
+          <summary class="cursor-pointer font-semibold text-gray-900 flex items-center gap-2">
+            <span>🔑</span> Forgot your password?
+          </summary>
+          <div class="mt-4 text-gray-600">
+            <p class="mb-2">Use the "Forgot Password" link on the login screen:</p>
+            <ol class="list-decimal list-inside space-y-1 text-sm">
+              <li>Click "Forgot Password" on login screen</li>
+              <li>Enter your registered email address</li>
+              <li>Check your email for reset instructions</li>
+              <li>Follow the link to create a new password</li>
+            </ol>
+          </div>
+        </details>
+
+        <details class="p-6 rounded-2xl bg-white/70 neo">
+          <summary class="cursor-pointer font-semibold text-gray-900 flex items-center gap-2">
+            <span>📧</span> Didn't receive invitation email?
+          </summary>
+          <div class="mt-4 text-gray-600">
+            <p class="mb-2">Check these common issues:</p>
+            <ul class="list-disc list-inside space-y-1 text-sm">
+              <li>Look in your spam/junk folder</li>
+              <li>Ensure you used the correct email in the form</li>
+              <li>Wait 48 hours - our team reviews applications manually</li>
+              <li>Contact us if still missing after 48 hours</li>
+            </ul>
+          </div>
+        </details>
+
+        <details class="p-6 rounded-2xl bg-white/70 neo">
+          <summary class="cursor-pointer font-semibold text-gray-900 flex items-center gap-2">
+            <span>📱</span> App won't install or crashes?
+          </summary>
+          <div class="mt-4 text-gray-600">
+            <p class="mb-2">Try these solutions:</p>
+            <ul class="list-disc list-inside space-y-1 text-sm">
+              <li>Ensure your device meets minimum requirements</li>
+              <li>Clear storage space (app needs 500MB free)</li>
+              <li>Restart your device and try again</li>
+              <li>Update your operating system</li>
+              <li>Contact support with your device model</li>
+            </ul>
+          </div>
+        </details>
+      </div>
+
+      <div class="space-y-4">
+        <details class="p-6 rounded-2xl bg-white/70 neo">
+          <summary class="cursor-pointer font-semibold text-gray-900 flex items-center gap-2">
+            <span>🔒</span> Account locked or suspended?
+          </summary>
+          <div class="mt-4 text-gray-600">
+            <p class="mb-2">Accounts may be temporarily locked for security:</p>
+            <ul class="list-disc list-inside space-y-1 text-sm">
+              <li>Wait 15 minutes before trying again</li>
+              <li>Ensure you're using the correct credentials</li>
+              <li>Reset your password if needed</li>
+              <li>Contact support for persistent issues</li>
+            </ul>
+          </div>
+        </details>
+
+        <details class="p-6 rounded-2xl bg-white/70 neo">
+          <summary class="cursor-pointer font-semibold text-gray-900 flex items-center gap-2">
+            <span>⚡</span> Sync issues with health data?
+          </summary>
+          <div class="mt-4 text-gray-600">
+            <p class="mb-2">Health data not syncing properly:</p>
+            <ul class="list-disc list-inside space-y-1 text-sm">
+              <li>Check app permissions in device settings</li>
+              <li>Ensure Health/Google Fit permissions are granted</li>
+              <li>Try disconnecting and reconnecting data sources</li>
+              <li>Force close and reopen the app</li>
+            </ul>
+          </div>
+        </details>
+
+        <details class="p-6 rounded-2xl bg-white/70 neo">
+          <summary class="cursor-pointer font-semibold text-gray-900 flex items-center gap-2">
+            <span>🌐</span> Dashboard not loading?
+          </summary>
+          <div class="mt-4 text-gray-600">
+            <p class="mb-2">Web dashboard issues:</p>
+            <ul class="list-disc list-inside space-y-1 text-sm">
+              <li>Clear browser cache and cookies</li>
+              <li>Try incognito/private browsing mode</li>
+              <li>Disable browser extensions temporarily</li>
+              <li>Use Chrome, Safari, or Firefox (latest versions)</li>
+            </ul>
+          </div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- SUPPORT SECTION -->
+  <section class="max-w-4xl mx-auto px-6 pb-20">
+    <div class="p-8 md:p-12 rounded-3xl bg-gradient-to-br from-indigo-500 via-purple-500 to-blue-600 text-white relative overflow-hidden">
+      <!-- Background decoration -->
+      <div class="absolute -top-10 -right-10 h-40 w-40 rounded-full bg-white/10 blur-2xl"></div>
+      <div class="absolute -bottom-10 -left-10 h-32 w-32 rounded-full bg-white/10 blur-xl"></div>
+      
+      <div class="relative text-center">
+        <h2 class="text-3xl md:text-4xl font-extrabold mb-4">Still Need Help?</h2>
+        <p class="text-indigo-100 text-lg mb-8 max-w-2xl mx-auto">Our support team is here to help you every step of the way. Don't hesitate to reach out.</p>
+        
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a href="./contact.html" class="inline-flex px-8 py-4 rounded-2xl bg-white text-indigo-600 font-semibold hover:bg-indigo-50 transition-colors shadow-[0_8px_30px_rgba(255,255,255,.3)]">
+            📧 Contact Support
+          </a>
+          <a href="mailto:hi@wellround.ai?subject=Login%20Support%20Needed" class="inline-flex px-8 py-4 rounded-2xl bg-white/20 text-white font-semibold hover:bg-white/30 transition-colors border-2 border-white/30">
+            💬 Email Us Directly
+          </a>
+        </div>
+
+        <div class="mt-8 text-sm text-indigo-200">
+          <p>📞 Phone support available Mon-Fri, 9 AM - 6 PM UAE time</p>
+          <p>⚡ Average response time: 2-4 hours</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="max-w-7xl mx-auto px-6 pb-10 text-gray-600 text-sm flex items-center justify-between">
+    <p>© Wellround LLC 2025</p>
+    <div class="flex gap-6">
+      <a href="privacy_policy.html">Privacy</a>
+      <a href="terms_of_service.html">Terms</a>
+      <a href="contact.html">Contact</a>
+    </div>
+  </footer>
+</body>
+</html>
