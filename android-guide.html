@@ -157,19 +157,19 @@
   <!-- NAVBAR -->
   <header x-data="{ open: false }" class="max-w-7xl mx-auto px-6 pt-6">
     <nav class="flex items-center justify-between p-3 rounded-2xl glass text-gray-900">
-      <div class="flex-1 flex items-center gap-3">
+      <a href="./" class="flex-1 flex items-center gap-3">
         <img src="./assets/images/logo.webp" width="50" height="50" alt="Wellround Logo">
-        <a href="./" class="font-extrabold text-lg tracking-tight">Wellround</a>
-      </div>
+        <span class="font-extrabold text-lg tracking-tight">Wellround</span>
+      </a>
       <div class="hidden md:flex items-center gap-6 text-sm">
         <a class="hover:opacity-80" href="./">Home</a>
-        <a class="hover:opacity-80" href="./about.html">About</a> 
-        <a class="hover:opacity-80" href="./team.html">Team</a>
-        <a class="hover:opacity-80 font-semibold text-blue-600" href="./login-guide.html">Guide</a>
-        <a class="hover:opacity-80" href="./contact.html">Contact</a>
+        <a class="hover:opacity-80" href="./about">About</a> 
+        <a class="hover:opacity-80" href="./team">Team</a>
+        <a class="hover:opacity-80" href="./login-guide">Guide</a>
+        <a class="hover:opacity-80" href="./contact">Contact</a>
       </div>
       <div class="flex-1 hidden md:flex items-center justify-end gap-3">
-        <a href="https://dashboard.wellround.me" target="_blank" class="text-sm text-gray-500 hover:text-indigo-600 transition-colors pr-2">Go to Dashboard</a>
+        <a href="https://wellround-b13fc.web.app/" target="_blank" class="text-sm text-gray-500 hover:text-indigo-600 transition-colors pr-2">Go to Dashboard</a>
         <a href="https://forms.zohopublic.in/adminwell1/form/JointheWellroundBetaatMBZUAI/formperma/m2n8ERITdzq9XYBROaiO9evQRCnMh5Qx9WMT8Mz8Mbk" class="px-4 py-2 rounded-xl bg-gradient-to-tr from-amber-500 to-orange-500 text-white font-semibold shadow-[0_6px_20px_rgba(245,158,11,.45)] hover:shadow-[0_8px_25px_rgba(245,158,11,.5)] transition-shadow">Get the app</a>
       </div>
       <!-- Hamburger button -->
@@ -184,12 +184,12 @@
     <!-- Mobile menu -->
     <div x-show="open" @click.away="open = false" class="md:hidden mt-2 p-4 rounded-2xl glass text-gray-900" style="display: none;">
       <a class="block py-2 px-4 text-sm hover:bg-gray-200/50 rounded-lg" href="./">Home</a>
-      <a class="block py-2 px-4 text-sm hover:bg-gray-200/50 rounded-lg" href="./about.html">About</a> 
-      <a class="block py-2 px-4 text-sm hover:bg-gray-200/50 rounded-lg" href="./team.html">Team</a>
-      <a class="block py-2 px-4 text-sm hover:bg-gray-200/50 rounded-lg font-semibold text-blue-600" href="./login-guide.html">Guide</a>
-      <a class="block py-2 px-4 text-sm hover:bg-gray-200/50 rounded-lg" href="./contact.html">Contact</a>
+      <a class="block py-2 px-4 text-sm hover:bg-gray-200/50 rounded-lg" href="./about">About</a> 
+      <a class="block py-2 px-4 text-sm hover:bg-gray-200/50 rounded-lg" href="./team">Team</a>
+      <a class="block py-2 px-4 text-sm hover:bg-gray-200/50 rounded-lg" href="./login-guide">Guide</a>
+      <a class="block py-2 px-4 text-sm hover:bg-gray-200/50 rounded-lg" href="./contact">Contact</a>
       <div class="border-t border-gray-300/50 my-2"></div>
-      <a href="https://dashboard.wellround.me" target="_blank" class="block py-2 px-4 text-sm text-gray-500 hover:text-indigo-600">Go to Dashboard</a>
+      <a href="https://wellround-b13fc.web.app/" target="_blank" class="block py-2 px-4 text-sm text-gray-500 hover:text-indigo-600">Go to Dashboard</a>
       <a href="https://forms.zohopublic.in/adminwell1/form/JointheWellroundBetaatMBZUAI/formperma/m2n8ERITdzq9XYBROaiO9evQRCnMh5Qx9WMT8Mz8Mbk" class="block w-full text-center mt-2 px-4 py-2 rounded-xl bg-gradient-to-tr from-amber-500 to-orange-500 text-white font-semibold shadow-[0_6px_20px_rgba(245,158,11,.45)] hover:shadow-[0_8px_25px_rgba(245,158,11,.5)] transition-shadow">Get the app</a>
     </div>
   </header>
@@ -208,9 +208,7 @@
 
   <!-- Android Guide Content -->
   <section class="max-w-5xl mx-auto px-6 pb-16">
-    <div class="p-8 rounded-2xl glass neo">
-
-       
+    <div class="p-8 rounded-2xl glass neo"> 
         <!-- Step 0 - Image right, text left -->
         <div class="step-container step-card-0 flex flex-col md:flex-row-reverse items-center gap-8 mb-12 p-6 rounded-2xl">
           <div class="md:w-1/2">
@@ -301,8 +299,8 @@
   <footer class="max-w-7xl mx-auto px-6 pb-10 text-gray-600 text-sm flex items-center justify-between">
     <p>&copy; 2025 Wellround. All rights reserved.</p>
     <div class="flex gap-4">
-      <a href="./privacy_policy.html" class="hover:text-indigo-600">Privacy Policy</a>
-      <a href="./terms_of_service.html" class="hover:text-indigo-600">Terms of Service</a>
+      <a href="./privacy_policy" class="hover:text-indigo-600">Privacy Policy</a>
+      <a href="./terms_of_service" class="hover:text-indigo-600">Terms of Service</a>
     </div>
   </footer>
 </body>

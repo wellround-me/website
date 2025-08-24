@@ -31,9 +31,17 @@
 
         /* Animated gradient backgrounds */
         @keyframes gradientShift {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
         }
 
         .animated-gradient {
@@ -138,186 +146,206 @@
 </head>
 
 <body class="bg-gradient-to-br from-sky-50 via-indigo-50 to-white text-gray-800 overflow-x-hidden">
-  <!-- Soft gradient blobs -->
-  <div class="pointer-events-none fixed inset-0 -z-10">
-    <div class="absolute -top-24 -left-24 h-96 w-96 rounded-full blur-3xl opacity-50" style="background: radial-gradient(60% 60% at 50% 50%, #93c5fd 0%, rgba(147,197,253,0) 70%), radial-gradient(40% 40% at 30% 30%, #60a5fa 0%, rgba(96,165,250,0) 80%);"></div>
-    <div class="absolute top-32 -right-20 h-[28rem] w-[28rem] rounded-full blur-[90px] opacity-40" style="background: radial-gradient(60% 60% at 50% 50%, #c4b5fd 0%, rgba(196,181,253,0) 70%), radial-gradient(50% 50% at 70% 30%, #38bdf8 0%, rgba(56,189,248,0) 80%);"></div>
-  </div>
-
-  <!-- NAVBAR -->
-  <header x-data="{ open: false }" class="max-w-7xl mx-auto px-6 pt-6">
-    <nav class="flex items-center justify-between p-3 rounded-2xl glass text-gray-900">
-      <div class="flex-1 flex items-center gap-3">
-        <img src="./assets/images/logo.webp" width="50" height="50" alt="Wellround Logo">
-        <a href="./" class="font-extrabold text-lg tracking-tight">Wellround</a>
-      </div>
-      <div class="hidden md:flex items-center gap-6 text-sm">
-        <a class="hover:opacity-80" href="./">Home</a>
-        <a class="hover:opacity-80" href="./about.html">About</a> 
-        <a class="hover:opacity-80" href="./team.html">Team</a>
-        <a class="hover:opacity-80 font-semibold text-blue-600" href="./login-guide.html">Guide</a>
-        <a class="hover:opacity-80" href="./contact.html">Contact</a>
-      </div>
-      <div class="flex-1 hidden md:flex items-center justify-end gap-3">
-        <a href="https://dashboard.wellround.me" target="_blank" class="text-sm text-gray-500 hover:text-indigo-600 transition-colors pr-2">Go to Dashboard</a>
-        <a href="https://forms.zohopublic.in/adminwell1/form/JointheWellroundBetaatMBZUAI/formperma/m2n8ERITdzq9XYBROaiO9evQRCnMh5Qx9WMT8Mz8Mbk" class="px-4 py-2 rounded-xl bg-gradient-to-tr from-amber-500 to-orange-500 text-white font-semibold shadow-[0_6px_20px_rgba(245,158,11,.45)] hover:shadow-[0_8px_25px_rgba(245,158,11,.5)] transition-shadow">Get the app</a>
-      </div>
-      <!-- Hamburger button -->
-      <div class="md:hidden flex items-center">
-        <button @click="open = !open" class="p-2 rounded-md text-gray-800 hover:bg-gray-200/50 focus:outline-none">
-          <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
-          </svg>
-        </button>
-      </div>
-    </nav>
-    <!-- Mobile menu -->
-    <div x-show="open" @click.away="open = false" class="md:hidden mt-2 p-4 rounded-2xl glass text-gray-900" style="display: none;">
-      <a class="block py-2 px-4 text-sm hover:bg-gray-200/50 rounded-lg" href="./">Home</a>
-      <a class="block py-2 px-4 text-sm hover:bg-gray-200/50 rounded-lg" href="./about.html">About</a> 
-      <a class="block py-2 px-4 text-sm hover:bg-gray-200/50 rounded-lg" href="./team.html">Team</a>
-      <a class="block py-2 px-4 text-sm hover:bg-gray-200/50 rounded-lg font-semibold text-blue-600" href="./login-guide.html">Guide</a>
-      <a class="block py-2 px-4 text-sm hover:bg-gray-200/50 rounded-lg" href="./contact.html">Contact</a>
-      <div class="border-t border-gray-300/50 my-2"></div>
-      <a href="https://dashboard.wellround.me" target="_blank" class="block py-2 px-4 text-sm text-gray-500 hover:text-indigo-600">Go to Dashboard</a>
-      <a href="https://forms.zohopublic.in/adminwell1/form/JointheWellroundBetaatMBZUAI/formperma/m2n8ERITdzq9XYBROaiO9evQRCnMh5Qx9WMT8Mz8Mbk" class="block w-full text-center mt-2 px-4 py-2 rounded-xl bg-gradient-to-tr from-amber-500 to-orange-500 text-white font-semibold shadow-[0_6px_20px_rgba(245,158,11,.45)] hover:shadow-[0_8px_25px_rgba(245,158,11,.5)] transition-shadow">Get the app</a>
-    </div>
-  </header>
-
-  <!-- HERO SECTION -->
-  <section class="max-w-6xl mx-auto px-6 pt-20 pb-12">
-    <div class="text-center">
-      <h1 class="text-4xl md:text-6xl font-extrabold leading-tight text-gray-900 mb-6">
-        iOS Detailed Guide
-      </h1>
-      <p class="text-xl text-gray-600 max-w-3xl mx-auto mb-8">
-        Follow these steps to seamlessly install and set up Wellround on your iOS device.
-      </p>
-    </div>
-  </section>
-
-  <!-- MAIN CONTENT -->
-  <main class="max-w-6xl mx-auto px-6 pb-20">
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-      <!-- Step 1: TestFlight Installation -->
-      <div class="step-container p-6 rounded-2xl glass neo step-card-0">
-        <div class="flex items-center justify-between mb-4">
-          <span class="step-number step-number-0 text-white font-bold text-lg w-10 h-10 flex items-center justify-center rounded-full">1</span>
-          <span class="font-semibold text-sm text-gray-500">Installation</span>
+    <!-- Soft gradient blobs -->
+    <div class="pointer-events-none fixed inset-0 -z-10">
+        <div class="absolute -top-24 -left-24 h-96 w-96 rounded-full blur-3xl opacity-50"
+            style="background: radial-gradient(60% 60% at 50% 50%, #93c5fd 0%, rgba(147,197,253,0) 70%), radial-gradient(40% 40% at 30% 30%, #60a5fa 0%, rgba(96,165,250,0) 80%);">
         </div>
-        <h3 class="text-2xl font-bold mb-3 step-title-0">Install TestFlight</h3>
-        <p class="text-gray-600 mb-4">First, install the <a href="https://apps.apple.com/us/app/testflight/id899247664" target="_blank" class="text-blue-600 hover:underline">TestFlight app</a> from the App Store. This is Apple's official platform for testing beta apps.</p>
-        <img src="./assets/images/guide/ios/IMG_9213.webp" alt="TestFlight App in App Store" class="rounded-lg shadow-md guide-image">
-      </div>
-
-      <!-- Step 2: Open Invitation -->
-      <div class="step-container p-6 rounded-2xl glass neo step-card-1">
-        <div class="flex items-center justify-between mb-4">
-          <span class="step-number step-number-1 text-white font-bold text-lg w-10 h-10 flex items-center justify-center rounded-full">2</span>
-          <span class="font-semibold text-sm text-gray-500">Invitation</span>
+        <div class="absolute top-32 -right-20 h-[28rem] w-[28rem] rounded-full blur-[90px] opacity-40"
+            style="background: radial-gradient(60% 60% at 50% 50%, #c4b5fd 0%, rgba(196,181,253,0) 70%), radial-gradient(50% 50% at 70% 30%, #38bdf8 0%, rgba(56,189,248,0) 80%);">
         </div>
-        <h3 class="text-2xl font-bold mb-3 step-title-1">Open Your Invite</h3>
-        <p class="text-gray-600 mb-4">Check your email for an invitation from TestFlight. Open it and tap "View in TestFlight" to accept the beta invitation for Wellround.</p>
-        <img src="./assets/images/guide/ios/IMG_9214.webp" alt="TestFlight Invitation Email" class="rounded-lg shadow-md guide-image">
-      </div>
-
-      <!-- Step 3: Install Wellround -->
-      <div class="step-container p-6 rounded-2xl glass neo step-card-2">
-        <div class="flex items-center justify-between mb-4">
-          <span class="step-number step-number-2 text-white font-bold text-lg w-10 h-10 flex items-center justify-center rounded-full">3</span>
-          <span class="font-semibold text-sm text-gray-500">Installation</span>
-        </div>
-        <h3 class="text-2xl font-bold mb-3 step-title-2">Install Wellround</h3>
-        <p class="text-gray-600 mb-4">Inside TestFlight, you'll see the Wellround app. Tap "INSTALL" to download and install it on your device.</p>
-        <img src="./assets/images/guide/ios/IMG_9215.webp" alt="Installing Wellround from TestFlight" class="rounded-lg shadow-md guide-image">
-      </div>
-
-      <!-- Step 4: Open the App & Login -->
-      <div class="step-container p-6 rounded-2xl glass neo step-card-3">
-        <div class="flex items-center justify-between mb-4">
-          <span class="step-number step-number-3 text-white font-bold text-lg w-10 h-10 flex items-center justify-center rounded-full">4</span>
-          <span class="font-semibold text-sm text-gray-500">Authentication</span>
-        </div>
-        <h3 class="text-2xl font-bold mb-3 step-title-3">Login to Your Account</h3>
-        <p class="text-gray-600 mb-4">Open Wellround. If it's your first time, reset your password using your university email. Then, log in with your new credentials.</p>
-        <img src="./assets/images/guide/ios/IMG_9216.webp" alt="Wellround Login Screen" class="rounded-lg shadow-md guide-image">
-      </div>
-
-      <!-- Step 5: Grant Health Access -->
-      <div class="step-container p-6 rounded-2xl glass neo step-card-4">
-        <div class="flex items-center justify-between mb-4">
-          <span class="step-number step-number-4 text-white font-bold text-lg w-10 h-10 flex items-center justify-center rounded-full">5</span>
-          <span class="font-semibold text-sm text-gray-500">Permissions</span>
-        </div>
-        <h3 class="text-2xl font-bold mb-3 step-title-4">Connect to Health</h3>
-        <p class="text-gray-600 mb-4">To get personalized insights, grant Wellround access to your Apple Health data. Tap "Turn On All Categories" for the best experience.</p>
-        <img src="./assets/images/guide/ios/IMG_9217.webp" alt="Apple Health Permissions" class="rounded-lg shadow-md guide-image">
-      </div>
-
-      <!-- Step 6: Select Smartwatch -->
-      <div class="step-container p-6 rounded-2xl glass neo step-card-0">
-        <div class="flex items-center justify-between mb-4">
-          <span class="step-number step-number-0 text-white font-bold text-lg w-10 h-10 flex items-center justify-center rounded-full">6</span>
-          <span class="font-semibold text-sm text-gray-500">Configuration</span>
-        </div>
-        <h3 class="text-2xl font-bold mb-3 step-title-0">Select Your Watch</h3>
-        <p class="text-gray-600 mb-4">Go to the settings page and choose your primary smartwatch (e.g., Apple Watch) to ensure accurate data synchronization.</p>
-        <img src="./assets/images/guide/ios/IMG_9219.webp" alt="Selecting Smartwatch in Settings" class="rounded-lg shadow-md guide-image">
-      </div>
     </div>
 
-    <!-- Final Note -->
-    <div class="mt-16 text-center max-w-3xl mx-auto p-8 rounded-2xl glass neo">
-      <h3 class="text-2xl font-bold text-gray-900 mb-4">You're All Set!</h3>
-      <p class="text-gray-600 mb-6">Congratulations! You've successfully set up Wellround on your iOS device. Explore the app, check your daily insights, and start your journey to a more balanced life. If you have any questions, visit our <a href="./contact.html" class="text-blue-600 hover:underline">contact page</a>.</p>
-      <a href="./login-guide.html" class="inline-flex items-center justify-center px-6 py-3 rounded-xl bg-gradient-to-tr from-blue-500 to-indigo-500 text-white font-semibold shadow-[0_6px_20px_rgba(59,130,246,.45)] hover:shadow-[0_8px_25px_rgba(59,130,246,.5)] transition-shadow">
-        ← Back to Login Guide
-      </a>
-    </div>
-  </main>
+    <!-- NAVBAR -->
+    <header x-data="{ open: false }" class="max-w-7xl mx-auto px-6 pt-6">
+        <nav class="flex items-center justify-between p-3 rounded-2xl glass text-gray-900">
+            <a href="./" class="flex-1 flex items-center gap-3">
+                <img src="./assets/images/logo.webp" width="50" height="50" alt="Wellround Logo">
+                <span class="font-extrabold text-lg tracking-tight">Wellround</span>
+            </a>
+            <div class="hidden md:flex items-center gap-6 text-sm">
+                <a class="hover:opacity-80" href="./">Home</a>
+                <a class="hover:opacity-80" href="./about">About</a> 
+                <a class="hover:opacity-80" href="./team">Team</a>
+                <a class="hover:opacity-80" href="./login-guide">Guide</a>
+                <a class="hover:opacity-80" href="./contact">Contact</a>
+            </div>
+            <div class="flex-1 hidden md:flex items-center justify-end gap-3">
+                <a href="https://wellround-b13fc.web.app/" target="_blank"
+                    class="text-sm text-gray-500 hover:text-indigo-600 transition-colors pr-2">Go to Dashboard</a>
+                <a href="https://forms.zohopublic.in/adminwell1/form/JointheWellroundBetaatMBZUAI/formperma/m2n8ERITdzq9XYBROaiO9evQRCnMh5Qx9WMT8Mz8Mbk"
+                    class="px-4 py-2 rounded-xl bg-gradient-to-tr from-amber-500 to-orange-500 text-white font-semibold shadow-[0_6px_20px_rgba(245,158,11,.45)] hover:shadow-[0_8px_25px_rgba(245,158,11,.5)] transition-shadow">Get
+                    the app</a>
+            </div>
+            <!-- Hamburger button -->
+            <div class="md:hidden flex items-center">
+                <button @click="open = !open"
+                    class="p-2 rounded-md text-gray-800 hover:bg-gray-200/50 focus:outline-none">
+                    <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M4 6h16M4 12h16m-7 6h7" />
+                    </svg>
+                </button>
+            </div>
+        </nav>
+        <!-- Mobile menu -->
+        <div x-show="open" @click.away="open = false" class="md:hidden mt-2 p-4 rounded-2xl glass text-gray-900" style="display: none;">
+            <a class="block py-2 px-4 text-sm hover:bg-gray-200/50 rounded-lg" href="./">Home</a>
+            <a class="block py-2 px-4 text-sm hover:bg-gray-200/50 rounded-lg" href="./about">About</a> 
+            <a class="block py-2 px-4 text-sm hover:bg-gray-200/50 rounded-lg" href="./team">Team</a>
+            <a class="block py-2 px-4 text-sm hover:bg-gray-200/50 rounded-lg" href="./login-guide">Guide</a>
+            <a class="block py-2 px-4 text-sm hover:bg-gray-200/50 rounded-lg" href="./contact">Contact</a>
+            <div class="border-t border-gray-300/50 my-2"></div>
+            <a href="https://wellround-b13fc.web.app/" target="_blank"
+                class="block py-2 px-4 text-sm text-gray-500 hover:text-indigo-600">Go to Dashboard</a>
+            <a href="https://forms.zohopublic.in/adminwell1/form/JointheWellroundBetaatMBZUAI/formperma/m2n8ERITdzq9XYBROaiO9evQRCnMh5Qx9WMT8Mz8Mbk"
+                class="block w-full text-center mt-2 px-4 py-2 rounded-xl bg-gradient-to-tr from-amber-500 to-orange-500 text-white font-semibold shadow-[0_6px_20px_rgba(245,158,11,.45)] hover:shadow-[0_8px_25px_rgba(245,158,11,.5)] transition-shadow">Get
+                the app</a>
+        </div>
+    </header>
 
-  <!-- FOOTER -->
-  <footer class="bg-gray-900 text-white mt-20">
-    <div class="max-w-7xl mx-auto py-12 px-6 lg:px-8">
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
-        <!-- Wellround Info -->
-        <div class="col-span-2 md:col-span-1">
-          <img src="./assets/images/logo.webp" class="h-10 mb-4" alt="Wellround Logo">
-          <p class="text-gray-400 text-sm">Your daily harmony, personalized.</p>
+    <!-- HERO SECTION -->
+    <section class="max-w-5xl mx-auto px-6 pt-20 pb-12">
+        <div class="text-center">
+            <h1 class="text-4xl md:text-6xl font-extrabold leading-tight text-gray-900 mb-6">
+                <span class="animated-gradient text-transparent bg-clip-text">iOS
+                    Detailed Guide</span>
+            </h1>
+            <p class="text-xl text-gray-600 max-w-3xl mx-auto mb-8">
+                A step-by-step walkthrough for setting up Wellround on your iPhone or iPad.
+            </p>
         </div>
-        <!-- Quick Links -->
-        <div>
-          <h3 class="text-sm font-semibold tracking-wider uppercase">Quick Links</h3>
-          <ul class="mt-4 space-y-2">
-            <li><a href="./" class="text-gray-400 hover:text-white">Home</a></li>
-            <li><a href="./about.html" class="text-gray-400 hover:text-white">About Us</a></li>
-            <li><a href="./team.html" class="text-gray-400 hover:text-white">Our Team</a></li>
-            <li><a href="./contact.html" class="text-gray-400 hover:text-white">Contact</a></li>
-          </ul>
-        </div>
-        <!-- Resources -->
-        <div>
-          <h3 class="text-sm font-semibold tracking-wider uppercase">Resources</h3>
-          <ul class="mt-4 space-y-2">
-            <li><a href="./login-guide.html" class="text-gray-400 hover:text-white">Login Guide</a></li>
-            <li><a href="./hardware-compatibility.html" class="text-gray-400 hover:text-white">Compatibility</a></li>
-            <li><a href="./terms_of_service.html" class="text-gray-400 hover:text-white">Terms of Service</a></li>
-            <li><a href="./privacy_policy.html" class="text-gray-400 hover:text-white">Privacy Policy</a></li>
-          </ul>
-        </div>
-        <!-- Get the App -->
-        <div>
-          <h3 class="text-sm font-semibold tracking-wider uppercase">Get the App</h3>
-          <div class="mt-4">
-            <a href="https://forms.zohopublic.in/adminwell1/form/JointheWellroundBetaatMBZUAI/formperma/m2n8ERITdzq9XYBROaiO9evQRCnMh5Qx9WMT8Mz8Mbk" class="inline-block px-4 py-2 rounded-lg bg-gradient-to-tr from-amber-500 to-orange-500 text-white font-semibold hover:shadow-lg transition-shadow">Join Beta</a>
-          </div>
-        </div>
-      </div>
-      <div class="mt-12 border-t border-gray-800 pt-8 text-center text-sm text-gray-500">
-        <p>&copy; 2024 Wellround. All rights reserved.</p>
-      </div>
-    </div>
-  </footer>
+    </section>
 
+    <!-- iOS Guide Content -->
+    <section class="max-w-5xl mx-auto px-6 pb-16">
+        <div class="p-8 rounded-2xl glass neo">
+
+            <!-- Step 0 - Image left, text right -->
+            <div
+                class="step-container step-card-0 flex flex-col md:flex-row-reverse items-center gap-8 mb-12 p-6 rounded-2xl">
+                <div class="md:w-1/2">
+                    <img src="./assets/images/guide/ios/IMG_9220.webp" alt="iOS Step 0 - Download from App Store"
+                        class="guide-image rounded-lg shadow-lg max-w-48 mx-auto">
+                </div>
+                <div class="md:w-1/2">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div
+                            class="step-number-0 w-10 h-10 rounded-full flex items-center justify-center text-white text-lg font-bold shadow-lg">
+                            0</div>
+                        <h4 class="step-title-0 text-xl font-bold">Download from Test Flight</h4>
+                    </div>
+                    <p class="text-gray-600 leading-relaxed"> Download the app from test flight
+                        <a href="https://testflight.apple.com/join/n4vEz8by"
+                            class="font-semibold text-blue-600 bg-blue-50 px-2 py-1 rounded hover:bg-blue-100 transition-colors underline"
+                            target="_blank" rel="noopener">here</a>
+                    </p>
+                </div>
+            </div>
+
+            <!-- Step 1 - Image left, text right -->
+            <div class="step-container step-card-1 flex flex-col md:flex-row items-center gap-8 mb-12 p-6 rounded-2xl">
+                <div class="md:w-1/2">
+                    <img src="./assets/images/guide/ios/IMG_9213.webp"
+                        alt="iOS Step 1 - Reset your password for your first access"
+                        class="guide-image rounded-lg shadow-lg max-w-48 mx-auto">
+                </div>
+                <div class="md:w-1/2">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div
+                            class="step-number-1 w-10 h-10 rounded-full flex items-center justify-center text-white text-lg font-bold shadow-lg">
+                            1</div>
+                        <h4 class="step-title-1 text-xl font-bold">Reset password</h4>
+                    </div>
+                    <p class="text-gray-600 leading-relaxed">If this is your first access. Please click on forget
+                        password. You will receive an email to reset the password. Check in the spam folder!</p>
+                </div>
+            </div>
+
+            <!-- Step 2 - Image right, text left -->
+            <div
+                class="step-container step-card-2 flex flex-col md:flex-row-reverse items-center gap-8 mb-12 p-6 rounded-2xl">
+                <div class="md:w-1/2">
+                    <div class="grid grid-cols-2 gap-4">
+                        <img src="./assets/images/guide/ios/IMG_9216.webp"
+                            alt="iOS Step 3 - Enter Your Credentials (Screen 1)"
+                            class="guide-image rounded-lg shadow-lg max-w-full">
+                        <img src="./assets/images/guide/ios/IMG_9222.webp"
+                            alt="iOS Step 3 - Enter Your Credentials (Screen 2)"
+                            class="guide-image rounded-lg shadow-lg max-w-full">
+                    </div>
+                </div>
+                <div class="md:w-1/2">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div
+                            class="step-number-2 w-10 h-10 rounded-full flex items-center justify-center text-white text-lg font-bold shadow-lg">
+                            2</div>
+                        <h4 class="step-title-2 text-xl font-bold">Give health permissions</h4>
+                    </div>
+                    <p class="text-gray-600 leading-relaxed">Once you have your new password, go to settings and give
+                        access to health settings as shown in the figures</p>
+                </div>
+            </div>
+
+            <!-- Step 3 - Multiple images left, text right -->
+            <div class="step-container step-card-3 flex flex-col md:flex-row items-center gap-8 mb-12 p-6 rounded-2xl">
+                <div class="md:w-1/2">
+                    <div class="grid grid-cols-2 gap-4">
+                        <img src="./assets/images/guide/ios/IMG_9214.webp"
+                            alt="iOS Step 3 - Enter Your Credentials (Screen 1)"
+                            class="guide-image rounded-lg shadow-lg max-w-full">
+                        <img src="./assets/images/guide/ios/IMG_9215.webp"
+                            alt="iOS Step 3 - Enter Your Credentials (Screen 2)"
+                            class="guide-image rounded-lg shadow-lg max-w-full">
+                    </div>
+                </div>
+                <div class="md:w-1/2">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div
+                            class="step-number-3 w-10 h-10 rounded-full flex items-center justify-center text-white text-lg font-bold shadow-lg">
+                            3</div>
+                        <h4 class="step-title-3 text-xl font-bold">Add your smartwatch</h4>
+                    </div>
+                    <p class="text-gray-600 leading-relaxed">If you have a smartwatch connected to your phone, and you
+                        successfully gave the permissions youo will see a a list of smartwatches in the settings. Select
+                        the smartwatch that you want to use with the app. You CANNOT use multiple watches for now. </p>
+                </div>
+            </div>
+
+            <!-- Step 4 - Image right, text left -->
+            <div
+                class="step-container step-card-4 flex flex-col md:flex-row-reverse items-center gap-8 mb-12 p-6 rounded-2xl">
+                <div class="md:w-1/2">
+                    <div class="grid grid-cols-2 gap-4">
+                        <img src="./assets/images/guide/ios/IMG_9217.webp"
+                            alt="iOS Step 3 - Enter Your Credentials (Screen 1)"
+                            class="guide-image rounded-lg shadow-lg max-w-full">
+                        <img src="./assets/images/guide/ios/IMG_9219.webp"
+                            alt="iOS Step 3 - Enter Your Credentials (Screen 2)"
+                            class="guide-image rounded-lg shadow-lg max-w-full">
+                    </div>
+                </div>
+                <div class="md:w-1/2">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div
+                            class="step-number-4 w-10 h-10 rounded-full flex items-center justify-center text-white text-lg font-bold shadow-lg">
+                            4</div>
+                        <h4 class="step-title-4 text-xl font-bold">Chat with your coach</h4>
+                    </div>
+                    <p class="text-gray-600 leading-relaxed">By clicking on the robot figure you will enter your
+                        personal chat. Here you can ask questions about your data and general wellness advices. Check
+                        the settings to change the personality of the LLM 🤫</p>
+                </div>
+            </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="max-w-7xl mx-auto px-6 pb-10 text-gray-600 text-sm flex items-center justify-between">
+      <p>&copy; 2025 Wellround. All rights reserved.</p>
+      <div class="flex gap-4">
+        <a href="./privacy_policy" class="hover:text-indigo-600">Privacy Policy</a>
+        <a href="./terms_of_service" class="hover:text-indigo-600">Terms of Service</a>
+      </div>
+    </footer>
 </body>
 </html>
