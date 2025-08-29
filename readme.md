@@ -2,3 +2,6 @@
 for i in *.jpeg; do ffmpeg -i "$i" "${i%.*}.webp"; done
 for i in *.PNG; do ffmpeg -i "$i" "${i%.*}.webp"; done
 
+# run 
+
+npx http-server . --ext html
