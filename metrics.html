@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html lang="en" x-data="metricsData()">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>System Metrics — Wellround</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link rel="icon" type="image/x-icon" href="./assets/images/favicon.ico">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
+  <style>
+    * { font-family: 'Plus Jakarta Sans', system-ui, -apple-system, Segoe UI, Roboto, Inter, Helvetica, Arial, sans-serif; }
+    .neo { box-shadow: 6px 10px 24px rgba(0,30,60,.15), -6px -10px 24px rgba(255,255,255,.4); }
+    .glass { backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); background: linear-gradient(180deg, rgba(255,255,255,.9), rgba(255,255,255,.6)); border: 1px solid rgba(255,255,255,.7); }
+    .ring-grad { background: conic-gradient(from 90deg, #3b82f6 0 85%, rgba(59,130,246,.15) 85% 100%); }
+    
+    /* 3D Effects */
+    .perspective-1000 { perspective: 1000px; }
+    .transform-gpu { transform: translate3d(0, 0, 0); }
+    .rotate-y-12 { transform: rotateY(12deg) rotateX(6deg) scale(1.1); }
+    .rotate-x-6 { transform: rotateX(6deg); }
+    .rotate-x-50 { transform: rotateX(50deg); }
+    .rotate-z-45 { transform: rotateZ(45deg); }
+    
+    /* Combined rotation for beautiful 3D effect */
+    .rotate-x-50.rotate-z-45 { 
+      transform: rotateX(15deg) rotateZ(8deg) rotateY(-5deg); 
+    }
+    
+    .rotate-x-50.rotate-z-45:hover { 
+      transform: rotateX(20deg) rotateZ(12deg) rotateY(-10deg) scale(1.1); 
+    }
+
+    .metric-card {
+      transition: all 0.3s ease;
+    }
+    
+    .metric-card:hover {
+      transform: translateY(-2px);
+    }
+  </style>
+</head>
+<body class="bg-gradient-to-br from-sky-50 via-indigo-50 to-white text-gray-800 overflow-x-hidden">
+  <!-- Soft gradient blobs (lighter background) -->
+  <div class="pointer-events-none fixed inset-0 -z-10">
+    <div class="absolute -top-24 -left-24 h-96 w-96 rounded-full blur-3xl opacity-50" style="background: radial-gradient(60% 60% at 50% 50%, #93c5fd 0%, rgba(147,197,253,0) 70%), radial-gradient(40% 40% at 30% 30%, #60a5fa 0%, rgba(96,165,250,0) 80%);"></div>
+    <div class="absolute top-32 -right-20 h-[28rem] w-[28rem] rounded-full blur-[90px] opacity-40" style="background: radial-gradient(60% 60% at 50% 50%, #c4b5fd 0%, rgba(196,181,253,0) 70%), radial-gradient(50% 50% at 70% 30%, #38bdf8 0%, rgba(56,189,248,0) 80%);"></div>
+    <div class="absolute bottom-0 left-1/2 -translate-x-1/2 h-80 w-[36rem] rounded-[40%] rotate-6 blur-[80px] opacity-40" style="background: radial-gradient(60% 60% at 50% 50%, #fde68a 0%, rgba(253,230,138,0) 70%), radial-gradient(50% 50% at 30% 70%, #93c5fd 0%, rgba(147,197,253,0) 80%);"></div>
+  </div>
+
+  <!-- NAVBAR -->
+  <header x-data="{ open: false }" class="max-w-7xl mx-auto px-6 pt-6">
+    <nav class="flex items-center justify-between p-3 rounded-2xl glass text-gray-900">
+      <a href="./" class="flex-1 flex items-center gap-3">
+        <img src="./assets/images/logo.webp" width="50" height="50" alt="Wellround Logo">
+        <span class="font-extrabold text-lg tracking-tight">Wellround</span>
+      </a>
+      <div class="hidden md:flex items-center gap-6 text-sm">
+        <a class="hover:opacity-80" href="./">Home</a>
+        <a class="hover:opacity-80" href="./about">About</a> 
+        <a class="hover:opacity-80" href="./team">Team</a>
+        <a class="hover:opacity-80" href="./login-guide">Onboard</a>
+        <a class="hover:opacity-80" href="./hall-of-fame">Hall of Fame</a>
+        <a class="hover:opacity-80" href="./contact">Contact</a>
+      </div>
+      <div class="flex-1 hidden md:flex items-center justify-end gap-3">
+        <a href="https://wellround-b13fc.web.app/" target="_blank" class="text-sm text-gray-500 hover:text-indigo-600 transition-colors pr-2">Go to Dashboard</a>
+        <a href="https://forms.zohopublic.in/adminwell1/form/JointheWellroundBetaatMBZUAI/formperma/m2n8ERITdzq9XYBROaiO9evQRCnMh5Qx9WMT8Mz8Mbk" class="px-4 py-2 rounded-xl bg-gradient-to-tr from-amber-500 to-orange-500 text-white font-semibold shadow-[0_6px_20px_rgba(245,158,11,.45)] hover:shadow-[0_8px_25px_rgba(245,158,11,.5)] transition-shadow">Get the app</a>
+      </div>
+      <!-- Hamburger button -->
+      <div class="md:hidden flex items-center">
+        <button @click="open = !open" class="p-2 rounded-md text-gray-800 hover:bg-gray-200/50 focus:outline-none">
+          <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+          </svg>
+        </button>
+      </div>
+    </nav>
+    <!-- Mobile menu -->
+    <div x-show="open" @click.away="open = false" class="md:hidden mt-2 p-4 rounded-2xl glass text-gray-900" style="display: none;">
+      <a class="block py-2 px-4 text-sm hover:bg-gray-200/50 rounded-lg" href="./">Home</a>
+      <a class="block py-2 px-4 text-sm hover:bg-gray-200/50 rounded-lg" href="./about">About</a> 
+      <a class="block py-2 px-4 text-sm hover:bg-gray-200/50 rounded-lg" href="./team">Team</a>
+      <a class="block py-2 px-4 text-sm hover:bg-gray-200/50 rounded-lg" href="./login-guide">Onboard</a>
+      <a class="block py-2 px-4 text-sm hover:bg-gray-200/50 rounded-lg" href="./hall-of-fame">Hall of Fame</a>
+      <a class="block py-2 px-4 text-sm hover:bg-gray-200/50 rounded-lg" href="./contact">Contact</a>
+      <div class="border-t border-gray-300/50 my-2"></div>
+      <a href="https://wellround-b13fc.web.app/" target="_blank" class="block py-2 px-4 text-sm text-gray-500 hover:text-indigo-600">Go to Dashboard</a>
+      <a href="https://forms.zohopublic.in/adminwell1/form/JointheWellroundBetaatMBZUAI/formperma/m2n8ERITdzq9XYBROaiO9evQRCnMh5Qx9WMT8Mz8Mbk" class="block w-full text-center mt-2 px-4 py-2 rounded-xl bg-gradient-to-tr from-amber-500 to-orange-500 text-white font-semibold shadow-[0_6px_20px_rgba(245,158,11,.45)] hover:shadow-[0_8px_25px_rgba(245,158,11,.5)] transition-shadow">Get the app</a>
+    </div>
+  </header>
+
+  <!-- MAIN CONTENT -->
+  <main class="max-w-7xl mx-auto px-6 py-16">
+    <!-- Header -->
+    <div class="text-center mb-16">
+      <h1 class="text-5xl md:text-6xl font-extrabold text-gray-900 mb-6">
+        System <span class="bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 bg-clip-text text-transparent">Metrics</span>
+      </h1>
+      <p class="text-xl text-gray-600 max-w-2xl mx-auto">
+        Real-time performance metrics and system health monitoring for our platform.
+      </p>
+      
+      <!-- Status indicator -->
+      <div class="flex items-center justify-center mt-8 gap-2">
+        <div x-show="loading" class="animate-spin rounded-full h-4 w-4 border-b-2 border-blue-600"></div>
+        <div x-show="!loading && !error" class="h-3 w-3 bg-green-500 rounded-full animate-pulse"></div>
+        <div x-show="!loading && error" class="h-3 w-3 bg-red-500 rounded-full"></div>
+        <span x-text="loading ? 'Loading metrics...' : error ? 'Failed to load metrics' : 'Live - Updated ' + lastUpdated" 
+              class="text-sm text-gray-600"></span>
+        <button @click="fetchMetrics()" class="ml-2 p-1 text-blue-600 hover:text-blue-700 transition-colors">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Loading State -->
+    <div x-show="loading" class="text-center py-12">
+      <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
+      <p class="text-gray-600">Fetching latest metrics...</p>
+    </div>
+
+    <!-- Error State -->
+    <div x-show="error" class="text-center py-12">
+      <div class="text-red-500 mb-4">
+        <svg class="w-12 h-12 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L3.732 16.5c-.77.833.192 2.5 1.732 2.5z"></path>
+        </svg>
+      </div>
+      <h3 class="text-lg font-semibold text-gray-900 mb-2">Unable to load metrics</h3>
+      <p class="text-gray-600 mb-4">There was an issue connecting to the metrics endpoint.</p>
+      <button @click="fetchMetrics()" class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
+        Try Again
+      </button>
+    </div>
+
+    <!-- Metrics Content -->
+    <div x-show="!loading && !error" class="space-y-12">
+      <!-- Overview Cards -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <!-- System Uptime -->
+        <div class="glass rounded-xl p-6 metric-card">
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="font-semibold text-gray-800">System Uptime</h3>
+            <div class="p-2 bg-green-100 rounded-lg">
+              <svg class="w-5 h-5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+              </svg>
+            </div>
+          </div>
+          <div class="text-2xl font-bold text-gray-900" x-text="formatUptime(uptime)">--</div>
+          <div class="text-sm text-gray-600">Since last restart</div>
+        </div>
+
+        <!-- Memory Usage -->
+        <div class="glass rounded-xl p-6 metric-card">
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="font-semibold text-gray-800">Memory Usage</h3>
+            <div class="p-2 bg-blue-100 rounded-lg">
+              <svg class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z"></path>
+              </svg>
+            </div>
+          </div>
+          <div class="text-2xl font-bold text-gray-900" x-text="formatBytes(memoryUsage)">--</div>
+          <div class="text-sm text-gray-600">Resident memory</div>
+        </div>
+
+        <!-- CPU Usage -->
+        <div class="glass rounded-xl p-6 metric-card">
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="font-semibold text-gray-800">CPU Time</h3>
+            <div class="p-2 bg-purple-100 rounded-lg">
+              <svg class="w-5 h-5 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a1 1 0 001-1v-1H7v1a1 1 0 001 1zM7 16h10l2-2V6a1 1 0 00-1-1H6a1 1 0 00-1 1v8l2 2z"></path>
+              </svg>
+            </div>
+          </div>
+          <div class="text-2xl font-bold text-gray-900" x-text="cpuTime + 's'">--</div>
+          <div class="text-sm text-gray-600">Total CPU seconds</div>
+        </div>
+
+        <!-- HTTP Requests -->
+        <div class="glass rounded-xl p-6 metric-card">
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="font-semibold text-gray-800">HTTP Requests</h3>
+            <div class="p-2 bg-orange-100 rounded-lg">
+              <svg class="w-5 h-5 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path>
+              </svg>
+            </div>
+          </div>
+          <div class="text-2xl font-bold text-gray-900" x-text="totalRequests">--</div>
+          <div class="text-sm text-gray-600">Total requests</div>
+        </div>
+      </div> 
+
+      <!-- System Overview -->
+      <div class="glass rounded-xl p-6">
+        <h2 class="text-2xl font-bold text-gray-900 mb-6">System Overview</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <!-- Requests per Hour -->
+          <div class="text-center">
+            <div class="text-3xl font-bold text-blue-600" x-text="Math.round(requestsPerHour)">--</div>
+            <div class="text-sm text-gray-600">Requests/Hour</div>
+            <div class="text-xs text-gray-500 mt-1">(estimated)</div>
+          </div>
+          
+          <!-- Average Memory Efficiency -->
+          <div class="text-center">
+            <div class="text-3xl font-bold text-green-600" x-text="memoryEfficiency + '%'">--</div>
+            <div class="text-sm text-gray-600">Memory Efficiency</div>
+            <div class="text-xs text-gray-500 mt-1">vs virtual memory</div>
+          </div>
+          
+          <!-- CPU Efficiency -->
+          <div class="text-center">
+            <div class="text-3xl font-bold text-purple-600" x-text="cpuEfficiency.toFixed(1) + '%'">--</div>
+            <div class="text-sm text-gray-600">CPU Efficiency</div>
+            <div class="text-xs text-gray-500 mt-1">cpu/uptime ratio</div>
+          </div>
+          
+          <!-- System Health Score -->
+          <div class="text-center">
+            <div class="text-3xl font-bold text-orange-600" x-text="healthScore + '/100'">--</div>
+            <div class="text-sm text-gray-600">Health Score</div>
+            <div class="text-xs text-gray-500 mt-1">overall system</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- HTTP Performance -->
+      <div class="glass rounded-xl p-6">
+        <h2 class="text-2xl font-bold text-gray-900 mb-6">HTTP Performance</h2>
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          <div>
+            <h3 class="text-lg font-semibold text-gray-800 mb-4">Request Duration Distribution</h3>
+            <canvas id="httpDurationChart" width="400" height="200"></canvas>
+          </div>
+          <div>
+            <h3 class="text-lg font-semibold text-gray-800 mb-4">Response Statistics</h3>
+            <div class="space-y-4">
+              <div class="flex justify-between items-center py-2 border-b border-gray-200">
+                <span class="text-gray-600">Average Response Time</span>
+                <span class="font-semibold" x-text="avgResponseTime + 'ms'">--</span>
+              </div>
+              <div class="flex justify-between items-center py-2 border-b border-gray-200">
+                <span class="text-gray-600">Total Response Size</span>
+                <span class="font-semibold" x-text="formatBytes(totalResponseSize)">--</span>
+              </div>
+              <div class="flex justify-between items-center py-2 border-b border-gray-200">
+                <span class="text-gray-600">Average Response Size</span>
+                <span class="font-semibold" x-text="formatBytes(avgResponseSize)">--</span>
+              </div>
+              <div class="flex justify-between items-center py-2">
+                <span class="text-gray-600">Success Rate</span>
+                <span class="font-semibold text-green-600">100%</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>           
+
+      <!-- Raw Data (Collapsible) -->
+      <div x-data="{ showRaw: false }" class="glass rounded-xl p-6">
+        <div class="flex items-center justify-between mb-4">
+          <h2 class="text-2xl font-bold text-gray-900">Raw Metrics Data</h2>
+          <button @click="showRaw = !showRaw" class="px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg transition-colors text-sm">
+            <span x-text="showRaw ? 'Hide' : 'Show'">Show</span> Raw Data
+          </button>
+        </div>
+        <div x-show="showRaw" x-transition class="bg-gray-50 rounded-lg p-4 font-mono text-sm overflow-auto max-h-96">
+          <pre x-text="rawMetrics">Loading...</pre>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="max-w-7xl mx-auto px-6 py-16 border-t border-white/20 mt-16">
+    <div class="grid md:grid-cols-4 gap-8">
+      <div>
+        <div class="flex items-center gap-3 mb-4">
+          <img src="./assets/images/logo.webp" width="40" height="40" alt="Wellround Logo">
+          <span class="font-extrabold text-lg">Wellround</span>
+        </div>
+        <p class="text-gray-600 text-sm leading-relaxed">
+          Your daily harmony companion, helping you build sustainable wellness habits.
+        </p>
+      </div>
+      
+      <div>
+        <h4 class="font-semibold text-gray-800 mb-4">Product</h4>
+        <div class="space-y-2 text-sm text-gray-600">
+          <a href="./about.html" class="block hover:text-blue-600 transition-colors">About</a>
+          <a href="./hardware-compatibility.html" class="block hover:text-blue-600 transition-colors">Compatibility</a>
+          <a href="./hall-of-fame.html" class="block hover:text-blue-600 transition-colors">Hall of Fame</a>
+        </div>
+      </div>
+      
+      <div>
+        <h4 class="font-semibold text-gray-800 mb-4">Community</h4>
+        <div class="space-y-2 text-sm text-gray-600">
+          <a href="./team.html" class="block hover:text-blue-600 transition-colors">Team</a>
+          <a href="./contact.html" class="block hover:text-blue-600 transition-colors">Contact</a>
+        </div>
+      </div>
+      
+      <div>
+        <h4 class="font-semibold text-gray-800 mb-4">Legal</h4>
+        <div class="space-y-2 text-sm text-gray-600">
+          <a href="./privacy_policy.html" class="block hover:text-blue-600 transition-colors">Privacy Policy</a>
+          <a href="./terms_of_service.html" class="block hover:text-blue-600 transition-colors">Terms of Service</a>
+        </div>
+      </div>
+    </div>
+    
+    <div class="border-t border-white/20 mt-8 pt-8 text-center text-sm text-gray-600">
+      <p>&copy; 2025 Wellround. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    function metricsData() {
+      return {
+        loading: true,
+        error: false,
+        rawMetrics: '',
+        lastUpdated: '',
+        
+        // Processed metrics data
+        uptime: 0,
+        memoryUsage: 0,
+        cpuTime: 0,
+        totalRequests: 0,
+        pythonInfo: { version: '', implementation: '' },
+        openFds: 0,
+        maxFds: 0,
+        avgResponseTime: 0,
+        totalResponseSize: 0,
+        avgResponseSize: 0,
+        gcData: {
+          collections: [],
+          objects: []
+        },
+        httpDurationBuckets: [],
+        endpointMetrics: [],
+        
+        // New calculated metrics
+        requestsPerHour: 0,
+        memoryEfficiency: 0,
+        cpuEfficiency: 0,
+        healthScore: 0,
+        virtualMemory: 0,
+
+        init() {
+          this.fetchMetrics();
+          // Auto refresh every 30 seconds
+          setInterval(() => this.fetchMetrics(), 30000);
+        },
+
+        async fetchMetrics() {
+          this.loading = true;
+          this.error = false;
+          
+          try {
+            const response = await fetch('https://api.wellround.me/metrics');
+            if (!response.ok) {
+              throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            
+            const text = await response.text();
+            this.rawMetrics = text;
+            this.parseMetrics(text);
+            this.lastUpdated = new Date().toLocaleTimeString();
+            
+            // Update charts after data is parsed
+            this.$nextTick(() => {
+              this.createCharts();
+            });
+            
+          } catch (error) {
+            console.error('Failed to fetch metrics:', error);
+            this.error = true;
+          } finally {
+            this.loading = false;
+          }
+        },
+
+        parseMetrics(text) {
+          const lines = text.split('\n');
+          const metrics = {};
+          
+          // Parse each line
+          lines.forEach(line => {
+            if (line.startsWith('#') || line.trim() === '') return;
+            
+            const match = line.match(/^([a-zA-Z_][a-zA-Z0-9_:]*(?:\{[^}]*\})?) (.+)$/);
+            if (match) {
+              const [, metricName, value] = match;
+              const numValue = parseFloat(value);
+              
+              // Extract metric name without labels
+              const baseName = metricName.split('{')[0];
+              
+              if (!metrics[baseName]) {
+                metrics[baseName] = [];
+              }
+              metrics[baseName].push({ full: metricName, value: numValue });
+            }
+          });
+
+          // Process specific metrics
+          this.processSystemMetrics(metrics);
+          this.processGCMetrics(metrics);
+          this.processHTTPMetrics(metrics);
+          this.processEndpointMetrics(metrics);
+          this.calculateDerivedMetrics();
+        },
+
+        processSystemMetrics(metrics) {
+          // Process start time for uptime
+          if (metrics.process_start_time_seconds) {
+            const startTime = metrics.process_start_time_seconds[0].value * 1000;
+            this.uptime = Date.now() - startTime;
+          }
+          
+          // Memory usage
+          if (metrics.process_resident_memory_bytes) {
+            this.memoryUsage = metrics.process_resident_memory_bytes[0].value;
+          }
+          
+          // Virtual memory
+          if (metrics.process_virtual_memory_bytes) {
+            this.virtualMemory = metrics.process_virtual_memory_bytes[0].value;
+          }
+          
+          // CPU time
+          if (metrics.process_cpu_seconds_total) {
+            this.cpuTime = metrics.process_cpu_seconds_total[0].value;
+          }
+          
+          // File descriptors
+          if (metrics.process_open_fds) {
+            this.openFds = metrics.process_open_fds[0].value;
+          }
+          if (metrics.process_max_fds) {
+            this.maxFds = metrics.process_max_fds[0].value;
+          }
+          
+          // Python info
+          if (metrics.python_info) {
+            const info = metrics.python_info[0];
+            const versionMatch = info.full.match(/version="([^"]*)"/);
+            const implMatch = info.full.match(/implementation="([^"]*)"/);
+            
+            this.pythonInfo = {
+              version: versionMatch ? versionMatch[1] : 'Unknown',
+              implementation: implMatch ? implMatch[1] : 'Unknown'
+            };
+          }
+          
+          // Total HTTP requests
+          if (metrics.http_requests_total) {
+            this.totalRequests = metrics.http_requests_total.reduce((sum, metric) => sum + metric.value, 0);
+          }
+        },
+
+        processGCMetrics(metrics) {
+          if (metrics.python_gc_collections_total) {
+            this.gcData.collections = metrics.python_gc_collections_total.map(metric => {
+              const genMatch = metric.full.match(/generation="(\d+)"/);
+              return {
+                generation: genMatch ? parseInt(genMatch[1]) : 0,
+                collections: metric.value
+              };
+            });
+          }
+          
+          if (metrics.python_gc_objects_collected_total) {
+            this.gcData.objects = metrics.python_gc_objects_collected_total.map(metric => {
+              const genMatch = metric.full.match(/generation="(\d+)"/);
+              return {
+                generation: genMatch ? parseInt(genMatch[1]) : 0,
+                objects: metric.value
+              };
+            });
+          }
+        },
+
+        processHTTPMetrics(metrics) {
+          // Response statistics
+          if (metrics.http_response_size_bytes_sum && metrics.http_response_size_bytes_count) {
+            const totalSize = metrics.http_response_size_bytes_sum[0].value;
+            const totalCount = metrics.http_response_size_bytes_count[0].value;
+            
+            this.totalResponseSize = totalSize;
+            this.avgResponseSize = totalCount > 0 ? totalSize / totalCount : 0;
+          }
+          
+          // Duration statistics
+          if (metrics.http_request_duration_highr_seconds_sum && metrics.http_request_duration_highr_seconds_count) {
+            const totalDuration = metrics.http_request_duration_highr_seconds_sum[0].value;
+            const totalCount = metrics.http_request_duration_highr_seconds_count[0].value;
+            
+            this.avgResponseTime = totalCount > 0 ? (totalDuration / totalCount) * 1000 : 0; // Convert to ms
+          }
+          
+          // Duration buckets for histogram
+          if (metrics.http_request_duration_highr_seconds_bucket) {
+            this.httpDurationBuckets = metrics.http_request_duration_highr_seconds_bucket.map(metric => {
+              const leMatch = metric.full.match(/le="([^"]*)"/);
+              return {
+                le: leMatch ? parseFloat(leMatch[1]) : Infinity,
+                count: metric.value
+              };
+            });
+          }
+        },
+
+        processEndpointMetrics(metrics) {
+          const endpoints = {};
+          
+          // Process HTTP request metrics by endpoint
+          if (metrics.http_requests_total) {
+            metrics.http_requests_total.forEach(metric => {
+              const handlerMatch = metric.full.match(/handler="([^"]*)"/);
+              const methodMatch = metric.full.match(/method="([^"]*)"/);
+              const statusMatch = metric.full.match(/status="([^"]*)"/);
+              
+              if (handlerMatch && methodMatch && statusMatch) {
+                const handler = handlerMatch[1];
+                const method = methodMatch[1];
+                const status = statusMatch[1];
+                const key = `${handler}|${method}`;
+                
+                if (!endpoints[key]) {
+                  endpoints[key] = {
+                    handler: handler,
+                    method: method,
+                    status: status,
+                    requests: 0,
+                    totalDuration: 0,
+                    totalSize: 0,
+                    histogramBuckets: []
+                  };
+                }
+                
+                endpoints[key].requests += metric.value;
+              }
+            });
+          }
+          
+          // Process duration metrics
+          if (metrics.http_request_duration_seconds_sum) {
+            metrics.http_request_duration_seconds_sum.forEach(metric => {
+              const handlerMatch = metric.full.match(/handler="([^"]*)"/);
+              const methodMatch = metric.full.match(/method="([^"]*)"/);
+              
+              if (handlerMatch && methodMatch) {
+                const key = `${handlerMatch[1]}|${methodMatch[1]}`;
+                if (endpoints[key]) {
+                  endpoints[key].totalDuration = metric.value;
+                }
+              }
+            });
+          }
+          
+          // Process histogram buckets for each endpoint
+          if (metrics.http_request_duration_seconds_bucket) {
+            // First, reset all histogram buckets to prevent accumulation
+            Object.keys(endpoints).forEach(key => {
+              endpoints[key].histogramBuckets = [];
+            });
+            
+            metrics.http_request_duration_seconds_bucket.forEach(metric => {
+              const handlerMatch = metric.full.match(/handler="([^"]*)"/);
+              const methodMatch = metric.full.match(/method="([^"]*)"/);
+              const leMatch = metric.full.match(/le="([^"]*)"/);
+              
+              if (handlerMatch && methodMatch && leMatch) {
+                const key = `${handlerMatch[1]}|${methodMatch[1]}`;
+                if (endpoints[key]) {
+                  endpoints[key].histogramBuckets.push({
+                    le: leMatch[1] === '+Inf' ? Infinity : parseFloat(leMatch[1]),
+                    count: metric.value
+                  });
+                }
+              }
+            });
+          }
+          
+          // Process response size metrics
+          if (metrics.http_response_size_bytes_sum) {
+            metrics.http_response_size_bytes_sum.forEach(metric => {
+              const handlerMatch = metric.full.match(/handler="([^"]*)"/);
+              
+              if (handlerMatch) {
+                // Find matching endpoint (assuming GET method if not specified)
+                const handler = handlerMatch[1];
+                const key = Object.keys(endpoints).find(k => k.startsWith(handler + '|'));
+                if (key && endpoints[key]) {
+                  endpoints[key].totalSize = metric.value;
+                }
+              }
+            });
+          }
+          
+          // Convert to array and calculate averages
+          this.endpointMetrics = Object.values(endpoints).map(endpoint => {
+            // Sort histogram buckets by le value
+            endpoint.histogramBuckets.sort((a, b) => a.le - b.le);
+            
+            return {
+              ...endpoint,
+              avgDuration: endpoint.requests > 0 ? endpoint.totalDuration / endpoint.requests : 0
+            };
+          });
+        },
+
+        createCharts() {
+          // Destroy all existing charts first
+          this.destroyAllCharts();
+          this.createHTTPDurationChart();
+        },
+
+        destroyAllCharts() {
+          // Destroy HTTP duration chart
+          if (window.httpDurationChart && typeof window.httpDurationChart.destroy === 'function') {
+            window.httpDurationChart.destroy();
+            window.httpDurationChart = null;
+          }
+          
+          // Destroy all possible endpoint charts by checking all window properties
+          Object.keys(window).forEach(key => {
+            if (key.startsWith('endpointChart-') && window[key] && typeof window[key].destroy === 'function') {
+              window[key].destroy();
+              window[key] = null;
+            }
+          });
+        },
+
+        createHTTPDurationChart() {
+          const ctx = document.getElementById('httpDurationChart');
+          if (!ctx || this.httpDurationBuckets.length === 0) return;
+          
+          // Convert buckets to histogram data
+          const buckets = this.httpDurationBuckets.slice(0, -1); // Remove +Inf bucket
+          const data = [];
+          
+          for (let i = 0; i < buckets.length; i++) {
+            const count = i === 0 ? buckets[i].count : buckets[i].count - buckets[i-1].count;
+            data.push({
+              x: buckets[i].le * 1000, // Convert to ms
+              y: count
+            });
+          }
+          
+          window.httpDurationChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+              labels: buckets.map(b => `≤${(b.le * 1000).toFixed(0)}ms`),
+              datasets: [{
+                label: 'Request Count',
+                data: data.map(d => d.y),
+                backgroundColor: '#3b82f6',
+                borderColor: '#1d4ed8',
+                borderWidth: 1
+              }]
+            },
+            options: {
+              responsive: true,
+              plugins: {
+                title: {
+                  display: true,
+                  text: 'HTTP Request Duration Distribution'
+                }
+              },
+              scales: {
+                y: {
+                  beginAtZero: true
+                }
+              }
+            }
+          });
+        },
+
+        formatBytes(bytes) {
+          if (bytes === 0) return '0 B';
+          const k = 1024;
+          const sizes = ['B', 'KB', 'MB', 'GB', 'TB'];
+          const i = Math.floor(Math.log(bytes) / Math.log(k));
+          return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+        },
+
+        formatUptime(ms) {
+          const seconds = Math.floor(ms / 1000);
+          const minutes = Math.floor(seconds / 60);
+          const hours = Math.floor(minutes / 60);
+          const days = Math.floor(hours / 24);
+          
+          if (days > 0) return `${days}d ${hours % 24}h ${minutes % 60}m`;
+          if (hours > 0) return `${hours}h ${minutes % 60}m`;
+          if (minutes > 0) return `${minutes}m ${seconds % 60}s`;
+          return `${seconds}s`;
+        },
+
+        calculateDerivedMetrics() {
+          // Calculate requests per hour
+          const uptimeHours = this.uptime / (1000 * 60 * 60);
+          this.requestsPerHour = uptimeHours > 0 ? this.totalRequests / uptimeHours : 0;
+          
+          // Calculate memory efficiency (resident vs virtual memory usage)
+          this.memoryEfficiency = this.virtualMemory > 0 ? 
+            Math.round((this.memoryUsage / this.virtualMemory) * 100) : 0;
+          
+          // Calculate CPU efficiency (CPU time vs uptime)
+          const uptimeSeconds = this.uptime / 1000;
+          this.cpuEfficiency = uptimeSeconds > 0 ? 
+            (this.cpuTime / uptimeSeconds) * 100 : 0;
+          
+          // Calculate overall health score
+          let score = 100;
+          
+          // Deduct points for high memory usage (if over 80% of virtual)
+          if (this.memoryEfficiency > 80) score -= 20;
+          else if (this.memoryEfficiency > 60) score -= 10;
+          
+          // Deduct points for high CPU usage
+          if (this.cpuEfficiency > 50) score -= 30;
+          else if (this.cpuEfficiency > 20) score -= 15;
+          
+          // Deduct points for too many open file descriptors
+          const fdUsage = this.maxFds > 0 ? (this.openFds / this.maxFds) * 100 : 0;
+          if (fdUsage > 80) score -= 15;
+          else if (fdUsage > 60) score -= 8;
+          
+          // Bonus points for good uptime and request handling
+          if (uptimeHours > 24) score += 5;
+          if (this.totalRequests > 100) score += 5;
+          
+          this.healthScore = Math.max(0, Math.min(100, Math.round(score)));
+        },
+      }
+    }
+  </script>
+</body>
+</html>
