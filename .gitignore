@@ -4,3 +4,5 @@ package.json
 README.md
 /node_modules
 .crush/
+
+curl_test.sh
