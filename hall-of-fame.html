@@ -141,21 +141,6 @@
 
   <!-- MAIN CONTENT -->
   <main class="max-w-7xl mx-auto px-6 py-12">
-    <section class="text-center my-16">
-      <div class="inline-flex items-center gap-3 mb-6">
-        <div class="trophy-gold text-4xl">🏆</div>
-        <h1 class="text-5xl lg:text-6xl font-extrabold bg-gradient-to-r from-yellow-500 via-orange-500 to-red-500 bg-clip-text text-transparent">
-          Hall of Fame
-        </h1>
-        <div class="trophy-gold text-4xl">🏆</div>
-      </div>
-      <div class="max-w-2xl mx-auto glass rounded-3xl p-10 neo">
-        <p class="text-2xl font-bold text-gray-800 mb-2">Coming soon</p>
-        <p class="text-gray-600">We’re polishing this experience. Check back shortly.</p>
-      </div>
-    </section>
-    <div class="hidden">
-    
     <!-- Hero Section -->
     <section class="text-center mb-16">
       <div class="inline-flex items-center gap-3 mb-6">
@@ -169,7 +154,7 @@
         Celebrating our most dedicated users, top contributors, and wellness champions who inspire our community every day.
       </p>
       
-      <!-- Quick Stats -->
+      <!-- Quick Stats
       <div class="grid grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
         <div class="metric-card glass rounded-2xl p-6 neo">
           <div class="text-3xl font-bold text-blue-600 stat-number">2,847</div>
@@ -187,16 +172,15 @@
           <div class="text-3xl font-bold text-orange-600 stat-number">89.7%</div>
           <div class="text-sm text-gray-600 font-medium">Goal Achievement</div>
         </div>
-      </div>
+      </div> -->
     </section>
 
-    <!-- Top 3 Podium -->
+    <!-- Top 3 Podium
     <section class="mb-16">
       <h2 class="text-3xl font-bold text-center mb-12 text-gray-800">👑 Bryan Johnson Reigns Supreme 👑</h2>
       
       <div class="grid lg:grid-cols-3 gap-8 items-end">
         
-        <!-- 2nd Place -->
         <div class="podium-2nd glass rounded-3xl p-8 neo text-center order-1 lg:order-1">
           <div class="trophy-silver text-6xl mb-4">🥈</div>
           <div class="w-24 h-24 mx-auto mb-4 rounded-full overflow-hidden ring-4 ring-gray-300">
@@ -221,7 +205,7 @@
           </div>
         </div>
 
-        <!-- 1st Place -->
+        
         <div class="podium-1st glass rounded-3xl p-8 neo text-center order-2 lg:order-2 transform lg:scale-110">
           <div class="trophy-gold text-7xl mb-4">👑</div>
           <div class="w-28 h-28 mx-auto mb-4 rounded-full overflow-hidden ring-4 ring-yellow-400">
@@ -246,7 +230,7 @@
           </div>
         </div>
 
-        <!-- 3rd Place -->
+      
         <div class="podium-3rd glass rounded-3xl p-8 neo text-center order-3 lg:order-3">
           <div class="trophy-bronze text-6xl mb-4">🥉</div>
           <div class="w-24 h-24 mx-auto mb-4 rounded-full overflow-hidden ring-4 ring-amber-600">
@@ -271,312 +255,38 @@
           </div>
         </div>
       </div>
-    </section>
+    </section> -->
 
     <!-- Full Leaderboard -->
-    <section class="mb-16">
+    <section class="mb-16" x-data="communityLeaderboard()" x-init="fetchLeaderboard()">
       <h2 class="text-3xl font-bold text-center mb-12 text-gray-800">🌟 Community Leaderboard 🌟</h2>
       
       <div class="glass rounded-3xl p-8 neo">
         <div class="space-y-4">
-          
-           Leaderboard Entry
-          <div class="leaderboard-entry flex items-center gap-6 p-4 rounded-xl bg-white/30 hover:bg-white/50 transition-colors">
-            <div class="text-2xl font-bold text-gray-400 w-8">#4</div>
-            <div class="w-12 h-12 rounded-full overflow-hidden ring-2 ring-blue-200">
-              <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&h=100&fit=crop&crop=face" 
-                   alt="Emma Thompson" class="w-full h-full object-cover">
-            </div>
-            <div class="flex-1">
-              <h4 class="font-bold text-gray-800">Emma Thompson</h4>
-              <div class="badge-star px-2 py-1 rounded-full text-xs font-semibold inline-block">Rising Star</div>
-            </div>
-            <div class="text-right">
-              <div class="font-bold text-gray-800">19,420 pts</div>
-              <div class="text-sm text-gray-600">73 day streak</div>
-            </div>
-          </div>
-
-          <div class="leaderboard-entry flex items-center gap-6 p-4 rounded-xl bg-white/30 hover:bg-white/50 transition-colors">
-            <div class="text-2xl font-bold text-gray-400 w-8">#5</div>
-            <div class="w-12 h-12 rounded-full overflow-hidden ring-2 ring-blue-200">
-              <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&h=100&fit=crop&crop=face" 
-                   alt="David Kim" class="w-full h-full object-cover">
-            </div>
-            <div class="flex-1">
-              <h4 class="font-bold text-gray-800">David Kim</h4>
-              <div class="badge-star px-2 py-1 rounded-full text-xs font-semibold inline-block">Rising Star</div>
-            </div>
-            <div class="text-right">
-              <div class="font-bold text-gray-800">18,750 pts</div>
-              <div class="text-sm text-gray-600">65 day streak</div>
-            </div>
-          </div>
-
-          <div class="leaderboard-entry flex items-center gap-6 p-4 rounded-xl bg-white/30 hover:bg-white/50 transition-colors">
-            <div class="text-2xl font-bold text-gray-400 w-8">#6</div>
-            <div class="w-12 h-12 rounded-full overflow-hidden ring-2 ring-blue-200">
-              <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&h=100&fit=crop&crop=face" 
-                   alt="Lisa Park" class="w-full h-full object-cover">
-            </div>
-            <div class="flex-1">
-              <h4 class="font-bold text-gray-800">Lisa Park</h4>
-              <div class="badge-star px-2 py-1 rounded-full text-xs font-semibold inline-block">Rising Star</div>
-            </div>
-            <div class="text-right">
-              <div class="font-bold text-gray-800">17,680 pts</div>
-              <div class="text-sm text-gray-600">58 day streak</div>
-            </div>
-          </div>
-
-          <div class="leaderboard-entry flex items-center gap-6 p-4 rounded-xl bg-white/30 hover:bg-white/50 transition-colors">
-            <div class="text-2xl font-bold text-gray-400 w-8">#7</div>
-            <div class="w-12 h-12 rounded-full overflow-hidden ring-2 ring-blue-200">
-              <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=100&h=100&fit=crop&crop=face" 
-                   alt="James Wilson" class="w-full h-full object-cover">
-            </div>
-            <div class="flex-1">
-              <h4 class="font-bold text-gray-800">James Wilson</h4>
-              <div class="badge-star px-2 py-1 rounded-full text-xs font-semibold inline-block">Rising Star</div>
-            </div>
-            <div class="text-right">
-              <div class="font-bold text-gray-800">16,290 pts</div>
-              <div class="text-sm text-gray-600">52 day streak</div>
-            </div>
-          </div>
-
-          <div class="leaderboard-entry flex items-center gap-6 p-4 rounded-xl bg-white/30 hover:bg-white/50 transition-colors">
-            <div class="text-2xl font-bold text-gray-400 w-8">#8</div>
-            <div class="w-12 h-12 rounded-full overflow-hidden ring-2 ring-blue-200">
-              <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop&crop=face" 
-                   alt="Ryan Torres" class="w-full h-full object-cover">
-            </div>
-            <div class="flex-1">
-              <h4 class="font-bold text-gray-800">Ryan Torres</h4>
-              <div class="badge-star px-2 py-1 rounded-full text-xs font-semibold inline-block">Rising Star</div>
-            </div>
-            <div class="text-right">
-              <div class="font-bold text-gray-800">15,750 pts</div>
-              <div class="text-sm text-gray-600">47 day streak</div>
-            </div>
-          </div>
-
-          <div class="leaderboard-entry flex items-center gap-6 p-4 rounded-xl bg-white/30 hover:bg-white/50 transition-colors">
-            <div class="text-2xl font-bold text-gray-400 w-8">#9</div>
-            <div class="w-12 h-12 rounded-full overflow-hidden ring-2 ring-blue-200">
-              <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&h=100&fit=crop&crop=face" 
-                   alt="Maya Chen" class="w-full h-full object-cover">
-            </div>
-            <div class="flex-1">
-              <h4 class="font-bold text-gray-800">Maya Chen</h4>
-              <div class="badge-star px-2 py-1 rounded-full text-xs font-semibold inline-block">Rising Star</div>
-            </div>
-            <div class="text-right">
-              <div class="font-bold text-gray-800">14,950 pts</div>
-              <div class="text-sm text-gray-600">43 day streak</div>
-            </div>
-          </div>
-
-          <div class="leaderboard-entry flex items-center gap-6 p-4 rounded-xl bg-white/30 hover:bg-white/50 transition-colors">
-            <div class="text-2xl font-bold text-gray-400 w-8">#10</div>
-            <div class="w-12 h-12 rounded-full overflow-hidden ring-2 ring-blue-200">
-              <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop&crop=face" 
-                   alt="Alex Rodriguez" class="w-full h-full object-cover">
-            </div>
-            <div class="flex-1">
-              <h4 class="font-bold text-gray-800">Alex Rodriguez</h4>
-              <div class="badge-star px-2 py-1 rounded-full text-xs font-semibold inline-block">Rising Star</div>
-            </div>
-            <div class="text-right">
-              <div class="font-bold text-gray-800">14,320 pts</div>
-              <div class="text-sm text-gray-600">39 day streak</div>
-            </div>
-          </div>
-        </div>
-
-        <!-- <div class="text-center mt-8">
-          <button class="px-6 py-3 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-xl font-semibold hover:from-blue-600 hover:to-purple-700 transition-colors">
-            View Full Leaderboard
-          </button>
-        </div> -->
-      </div>
-    </section>
-
-    <!-- Achievement Categories -->
-    <section class="mb-16">
-      <h2 class="text-3xl font-bold text-center mb-12 text-gray-800">🎯 Achievement Categories 🎯</h2>
-      
-      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-        
-        <!-- Category Card -->
-        <div class="glass rounded-2xl p-6 neo text-center hover:transform hover:scale-105 transition-all duration-300">
-          <div class="text-4xl mb-4">🏃‍♂️</div>
-          <h4 class="font-bold text-gray-800 mb-2">Step Masters</h4>
-          <p class="text-sm text-gray-600 mb-4">Champions who never skip their daily steps</p>
-          <div class="text-2xl font-bold text-blue-600">847</div>
-          <div class="text-xs text-gray-500">active members</div>
-        </div>
-
-        <div class="glass rounded-2xl p-6 neo text-center hover:transform hover:scale-105 transition-all duration-300">
-          <div class="text-4xl mb-4">😴</div>
-          <h4 class="font-bold text-gray-800 mb-2">Sleep Champions</h4>
-          <p class="text-sm text-gray-600 mb-4">Masters of consistent, quality sleep</p>
-          <div class="text-2xl font-bold text-purple-600">623</div>
-          <div class="text-xs text-gray-500">active members</div>
-        </div>
-
-        <div class="glass rounded-2xl p-6 neo text-center hover:transform hover:scale-105 transition-all duration-300">
-          <div class="text-4xl mb-4">🧘‍♀️</div>
-          <h4 class="font-bold text-gray-800 mb-2">Mindfulness Gurus</h4>
-          <p class="text-sm text-gray-600 mb-4">Dedicated to daily meditation and mindfulness</p>
-          <div class="text-2xl font-bold text-green-600">412</div>
-          <div class="text-xs text-gray-500">active members</div>
-        </div>
-
-        <div class="glass rounded-2xl p-6 neo text-center hover:transform hover:scale-105 transition-all duration-300">
-          <div class="text-4xl mb-4">🤝</div>
-          <h4 class="font-bold text-gray-800 mb-2">Community Heroes</h4>
-          <p class="text-sm text-gray-600 mb-4">Supporting and inspiring fellow users</p>
-          <div class="text-2xl font-bold text-orange-600">289</div>
-          <div class="text-xs text-gray-500">active members</div>
-        </div>
-
-      </div>
-    </section>
-
-    <!-- GitHub Contributors -->
-    <section class="mb-16" x-data="{ 
-      contributors: [],
-      stats: {},
-      loading: true,
-      async fetchGitHubData() {
-        try {
-          // Fetch contributors (replace 'wellround/app' with your actual repo)
-          const contributorsResponse = await fetch('https://api.github.com/repos/wellround-me/website/contributors');
-          this.contributors = await contributorsResponse.json();
-          
-          // Fetch repository stats
-          const repoResponse = await fetch('https://github.com/wellround-me/website');
-          const repoData = await repoResponse.json();
-          this.stats = {
-            stars: repoData.stargazers_count,
-            forks: repoData.forks_count,
-            issues: repoData.open_issues_count,
-            language: repoData.language
-          };
-          
-          this.loading = false;
-        } catch (error) {
-          console.log('GitHub API error:', error);
-          // Fallback data in case API fails
-          this.contributors = [
-            { login: 'sebastiancavada', contributions: 247, avatar_url: 'https://avatars.githubusercontent.com/u/17767897?v=4' },
-            { login: 'contributor2', contributions: 89, avatar_url: 'https://avatars.githubusercontent.com/u/12745471?v=4' },
-            { login: 'contributor3', contributions: 45, avatar_url: 'https://avatars.githubusercontent.com/u/4304176?v=4' }
-          ];
-          this.stats = { stars: 156, forks: 23, issues: 8, language: 'TypeScript' };
-          this.loading = false;
-        }
-      }
-    }" x-init="fetchGitHubData()">
-      <h2 class="text-3xl font-bold text-center mb-12 text-gray-800">
-        <span class="inline-flex items-center gap-3">
-          <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
-            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
-          </svg>
-          GitHub Contributors
-        </span>
-      </h2>
-      
-      <!-- GitHub Stats -->
-      <div class="grid grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
-        <div class="metric-card glass rounded-2xl p-6 neo">
-          <div class="flex items-center gap-2 mb-2">
-            <svg class="w-5 h-5 text-yellow-500" fill="currentColor" viewBox="0 0 20 20">
-              <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
-            </svg>
-            <span class="text-sm text-gray-600 font-medium">Stars</span>
-          </div>
-          <div class="text-3xl font-bold text-yellow-600 stat-number" x-text="loading ? '...' : stats.stars">156</div>
-        </div>
-        
-        <div class="metric-card glass rounded-2xl p-6 neo">
-          <div class="flex items-center gap-2 mb-2">
-            <svg class="w-5 h-5 text-blue-500" fill="currentColor" viewBox="0 0 20 20">
-              <path fill-rule="evenodd" d="M7.707 3.293a1 1 0 010 1.414L5.414 7H11a7 7 0 017 7v2a1 1 0 11-2 0v-2a5 5 0 00-5-5H5.414l2.293 2.293a1 1 0 11-1.414 1.414L2.586 7a1 1 0 010-1.414l3.707-3.707a1 1 0 011.414 0z" clip-rule="evenodd"/>
-            </svg>
-            <span class="text-sm text-gray-600 font-medium">Forks</span>
-          </div>
-          <div class="text-3xl font-bold text-blue-600 stat-number" x-text="loading ? '...' : stats.forks">23</div>
-        </div>
-        
-        <div class="metric-card glass rounded-2xl p-6 neo">
-          <div class="flex items-center gap-2 mb-2">
-            <svg class="w-5 h-5 text-red-500" fill="currentColor" viewBox="0 0 20 20">
-              <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"/>
-            </svg>
-            <span class="text-sm text-gray-600 font-medium">Open Issues</span>
-          </div>
-          <div class="text-3xl font-bold text-red-600 stat-number" x-text="loading ? '...' : stats.issues">8</div>
-        </div>
-        
-        <div class="metric-card glass rounded-2xl p-6 neo">
-          <div class="flex items-center gap-2 mb-2">
-            <svg class="w-5 h-5 text-purple-500" fill="currentColor" viewBox="0 0 20 20">
-              <path fill-rule="evenodd" d="M12.316 3.051a1 1 0 01.633 1.265l-4 12a1 1 0 11-1.898-.632l4-12a1 1 0 011.265-.633zM5.707 6.293a1 1 0 010 1.414L3.414 10l2.293 2.293a1 1 0 11-1.414 1.414l-3-3a1 1 0 010-1.414l3-3a1 1 0 011.414 0zm8.586 0a1 1 0 011.414 0l3 3a1 1 0 010 1.414l-3 3a1 1 0 11-1.414-1.414L16.586 10l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd"/>
-            </svg>
-            <span class="text-sm text-gray-600 font-medium">Language</span>
-          </div>
-          <div class="text-lg font-bold text-purple-600 stat-number" x-text="loading ? '...' : stats.language">TypeScript</div>
-        </div>
-      </div>
-
-      <!-- Top GitHub Contributors -->
-      <div class="glass rounded-3xl p-8 neo">
-        <h3 class="text-xl font-bold text-gray-800 mb-6 text-center">Top GitHub Contributors</h3>
-        
-        <div x-show="loading" class="text-center py-8">
-          <div class="inline-flex items-center gap-2 text-gray-600">
+          <div x-show="loading" class="text-center py-6 text-gray-600 flex items-center justify-center gap-2">
             <svg class="w-5 h-5 animate-spin" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/>
             </svg>
-            Loading GitHub data...
+            Loading live leaderboard...
           </div>
-        </div>
-        
-        <div x-show="!loading" class="space-y-4">
-          <template x-for="(contributor, index) in contributors.slice(0, 6)" :key="contributor.login">
+
+          <template x-for="(entry, index) in computedEntries()" :key="entry.id ?? entry.user_id ?? entry.rank ?? index">
             <div class="leaderboard-entry flex items-center gap-6 p-4 rounded-xl bg-white/30 hover:bg-white/50 transition-colors">
-              <div class="text-2xl font-bold text-gray-400 w-8" x-text="'#' + (index + 1)"></div>
-              <div class="w-12 h-12 rounded-full overflow-hidden ring-2 ring-green-200">
-                <img :src="contributor.avatar_url" :alt="contributor.login" class="w-full h-full object-cover">
+              <div class="text-2xl font-bold text-gray-400 w-8" x-text="'#' + (entry.rank ?? index + 1)"></div>
+              <div class="w-12 h-12 rounded-full overflow-hidden ring-2 ring-blue-200">
+                <img :src="avatarFor(entry, index)" :alt="entryName(entry)" class="w-full h-full object-cover">
               </div>
               <div class="flex-1">
-                <h4 class="font-bold text-gray-800" x-text="contributor.login"></h4>
-                <div class="badge-contributor px-2 py-1 rounded-full text-xs font-semibold inline-block">GitHub Contributor</div>
+                <h4 class="font-bold text-gray-800" x-text="entryName(entry)"></h4>
+                <div class="text-sm text-gray-600" x-text="entryBadge(entry)"></div>
               </div>
-              <div class="text-right">
-                <div class="font-bold text-gray-800" x-text="contributor.contributions + ' commits'"></div>
-                <div class="text-sm text-gray-600">contributions</div>
-              </div>
-              <div class="text-right">
-                <a :href="'https://github.com/' + contributor.login" target="_blank" 
-                   class="px-3 py-1 text-xs bg-gray-800 text-white rounded-full hover:bg-gray-700 transition-colors">
-                  View Profile
-                </a>
+              <div class="text-right space-y-1">
+                <div class="font-bold text-gray-800" x-text="formatSteps(entry)"></div>
+                <div class="text-sm text-gray-600" x-text="formatWorkout(entry)"></div>
+                <div class="text-sm text-gray-500" x-text="formatStreak(entry)"></div>
               </div>
             </div>
           </template>
-        </div>
-
-        <div class="text-center mt-8">
-          <a href="https://github.com/wellround-me/website/graphs/contributors" target="_blank" 
-             class="px-6 py-3 bg-gradient-to-r from-gray-700 to-gray-900 text-white rounded-xl font-semibold hover:from-gray-800 hover:to-black transition-colors inline-flex items-center gap-2">
-            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
-              <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
-            </svg>
-            View All Contributors on GitHub
-          </a>
         </div>
       </div>
     </section>
@@ -600,7 +310,124 @@
       </div>
     </section>
 
-    </div>
+    <script>
+      const LEADERBOARD_API_URL = 'https://api.wellround.me/api/leaderboard/demo?limit=50';
+
+      document.addEventListener('alpine:init', () => {
+        Alpine.data('communityLeaderboard', () => ({
+          entries: [],
+          loading: true,
+          error: false,
+          fallbackEntries: [
+            { user_id: 'Nicolò Demo', streak_days: 2, avg_sleep_hours: 7.8, avg_steps: 7266, avg_workout_minutes: 15.8 },
+            { user_id: 'Giulia Demo', streak_days: 5, avg_sleep_hours: 6.8, avg_steps: 6185, avg_workout_minutes: 58.2 },
+            { user_id: 'Luca Demo', streak_days: 3, avg_sleep_hours: 6.1, avg_steps: 8822, avg_workout_minutes: 19.5 },
+            { user_id: 'Martina Demo', streak_days: 4, avg_sleep_hours: 8.5, avg_steps: 8114, avg_workout_minutes: 34.0 },
+            { user_id: 'Alessia Demo', streak_days: 2, avg_sleep_hours: 8.1, avg_steps: 7845, avg_workout_minutes: 27.3 },
+            { user_id: 'Valentina Demo', streak_days: 3, avg_sleep_hours: 6.6, avg_steps: 11322, avg_workout_minutes: 24.2 },
+            { user_id: 'Davide Demo', streak_days: 3, avg_sleep_hours: 6.5, avg_steps: 4454, avg_workout_minutes: 15.7 },
+            { user_id: 'Elena Demo', streak_days: 4, avg_sleep_hours: 6.0, avg_steps: 7508, avg_workout_minutes: 58.7 },
+            { user_id: 'Sara Demo', streak_days: 5, avg_sleep_hours: 8.3, avg_steps: 7569, avg_workout_minutes: 21.3 },
+            { user_id: 'Federico Demo', streak_days: 5, avg_sleep_hours: 6.7, avg_steps: 5370, avg_workout_minutes: 21.1 }
+          ],
+          async fetchLeaderboard() {
+            this.loading = true;
+            this.error = false;
+
+            try {
+              const response = await fetch(LEADERBOARD_API_URL, {
+                headers: { 'Accept': 'application/json' }
+              });
+
+              if (!response.ok) {
+                throw new Error(`Request failed with status ${response.status}`);
+              }
+
+              const payload = await response.json();
+              this.entries = this.normalizePayload(payload);
+            } catch (fetchError) {
+              console.error('Leaderboard API error:', fetchError);
+              this.error = true;
+              this.entries = [];
+            } finally {
+              this.loading = false;
+            }
+          },
+          normalizePayload(payload) {
+            if (Array.isArray(payload)) return payload;
+            if (Array.isArray(payload?.leaderboard)) return payload.leaderboard;
+            if (Array.isArray(payload?.data)) return payload.data;
+            if (Array.isArray(payload?.results)) return payload.results;
+            return [];
+          },
+          computedEntries() {
+            const list = this.entries.length ? this.entries : this.fallbackEntries;
+            return list
+              .slice()
+              .sort((a, b) => this.streakValue(b) - this.streakValue(a))
+              .slice(0, 10);
+          },
+          entryName(entry) {
+            return entry.display_name ?? entry.name ?? entry.username ?? entry.user?.name ?? entry.user_id ?? 'Anonymous achiever';
+          },
+          entryBadge(entry) {
+            const sleep = entry.avg_sleep_hours ?? entry.sleep_hours ?? entry.sleep ?? entry.avgSleep;
+            if (sleep === 0 || sleep) {
+              return `Avg sleep ${this.formatDecimal(sleep)} hrs`;
+            }
+            return entry.badge ?? entry.title ?? 'Sleep data pending';
+          },
+          avatarFor(entry, index) {
+            const avatar = entry.avatar ?? entry.avatar_url ?? entry.photoUrl ?? entry.photo_url ?? entry.user?.avatar_url;
+            if (avatar) return avatar;
+            const fallback = this.fallbackEntries[index % this.fallbackEntries.length];
+            if (fallback?.avatar) return fallback.avatar;
+            const initials = encodeURIComponent(this.entryName(entry));
+            return `https://api.dicebear.com/7.x/initials/svg?seed=${initials}`;
+          },
+          formatSteps(entry) {
+            const value = entry.avg_steps ?? entry.steps ?? entry.total_points ?? entry.score;
+            if (value === undefined || value === null) {
+              return 'Steps pending';
+            }
+            return `${this.formatNumber(value)} avg steps`;
+          },
+          formatWorkout(entry) {
+            const value = entry.avg_workout_minutes ?? entry.workout_minutes ?? entry.workout ?? entry.activity_minutes;
+            if (value === undefined || value === null) {
+              return 'Workout data pending';
+            }
+            return `${this.formatDecimal(value)} min workouts`;
+          },
+          formatStreak(entry) {
+            const value = entry.streak ?? entry.streak_days ?? entry.daily_streak ?? entry.longest_streak ?? entry.streakDays;
+            if (value === undefined || value === null) {
+              return 'Streak unavailable';
+            }
+            return `${this.formatNumber(value)} day streak`;
+          },
+          formatNumber(value) {
+            const numberValue = typeof value === 'number' ? value : Number(value);
+            if (Number.isFinite(numberValue)) {
+              return new Intl.NumberFormat('en-US').format(numberValue);
+            }
+            return value ?? '0';
+          },
+          formatDecimal(value) {
+            const numberValue = typeof value === 'number' ? value : Number(value);
+            if (Number.isFinite(numberValue)) {
+              return numberValue.toFixed(1);
+            }
+            return value ?? '0.0';
+          },
+          streakValue(entry) {
+            const raw = entry.streak ?? entry.streak_days ?? entry.daily_streak ?? entry.longest_streak ?? entry.streakDays;
+            const numberValue = typeof raw === 'number' ? raw : Number(raw);
+            return Number.isFinite(numberValue) ? numberValue : 0;
+          }
+        }));
+      });
+    </script>
   </main>
 
   <!-- FOOTER -->
